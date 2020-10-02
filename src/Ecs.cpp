@@ -2,18 +2,23 @@
 
 #include "components/Velocity.h"
 #include "components/Position.h"
+#include "components/Map.h"
+#include "components/TileLayer.h"
 #include "components/PlayerInput.h"
 #include "components/Sprite.h"
 #include "systems/EventSystem.h"
 #include "systems/InputSystem.h"
 #include "systems/MovementSystem.h"
 #include "systems/SpriteSystem.h"
+#include "systems/TileLayerRenderingSystem.h"
 #include "Context.h"
 
 namespace ecs
 {
 	void registerComponents(flecs::world& ecs)
 	{
+		ecs.component<Map>();
+		ecs.component<TileLayer>();
 		ecs.component<PlayerInput>();
 		ecs.component<Position>();
 		ecs.component<Velocity>();
@@ -33,7 +38,12 @@ namespace ecs
 		ecs.system<Position, const Velocity>()
 			.each(MovementSystem::run);
 
+		ecs.system<const TileLayer>()
+			.kind(flecs::OnStore)
+			.each(TileLayerRenderingSystem::run);
+
 		ecs.system<Sprite>()
+			.kind(flecs::OnStore)
 			.each(SpriteSystem::run);
 
 		// TODO - Move to system file

@@ -1,3 +1,6 @@
 [submodule "extlib/flecs"]
 	path = extlib/flecs
 	url = https://github.com/SanderMertens/flecs.git
+[submodule "extlib/tmxlite"]
+	path = extlib/tmxlite
+	url = https://github.com/fallahn/tmxlite.git
