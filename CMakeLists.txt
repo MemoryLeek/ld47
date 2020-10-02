@@ -16,4 +16,5 @@ endif()
 
 include_directories(extlib/flecs)
 
+include_directories(src)
 add_subdirectory(src)

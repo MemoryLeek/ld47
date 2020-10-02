@@ -2,25 +2,24 @@
 
 #include "flecs.h"
 
+#include "Context.h"
+#include "Ecs.h"
+
 int main(int argc, char* argv[])
 {
 	sf::RenderWindow window(sf::VideoMode(960, 540), "LD47");
 
+	Context ctx(window);
+
 	flecs::world ecs;
+	ecs.set_context(&ctx);
 
-	while (window.isOpen())
+	ecs::registerComponents(ecs);
+	ecs::registerSystems(ecs);
+
+	sf::Clock clock;
+	while (ecs.progress(clock.restart().asSeconds()))
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
-
-		window.clear();
-		window.display();
 	}
 
 	return 0;
