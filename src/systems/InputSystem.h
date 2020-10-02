@@ -5,5 +5,5 @@
 class InputSystem
 {
 	public:
-		static void run(flecs::iter& it);
+		static void run(flecs::iter& it, flecs::column<PlayerInput> p);
 };
