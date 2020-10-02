@@ -8,5 +8,6 @@
 		"filesystem": "cpp",
 		"fstream": "cpp",
 		"locale": "cpp"
-	}
+	},
+	"cmake.configureOnOpen": true
 }

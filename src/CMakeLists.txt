@@ -4,6 +4,7 @@ add_executable(PROJECT_BIN
 	systems/EventSystem.cpp
 	systems/InputSystem.cpp
 	systems/MovementSystem.cpp
+	systems/SpriteSystem.cpp
 	Context.cpp
 	Ecs.cpp
 )
