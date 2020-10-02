@@ -1,8 +1,12 @@
 #include <SFML/Graphics.hpp>
 
+#include "flecs.h"
+
 int main(int argc, char* argv[])
 {
 	sf::RenderWindow window(sf::VideoMode(960, 540), "LD47");
+
+	flecs::world ecs;
 
 	while (window.isOpen())
 	{

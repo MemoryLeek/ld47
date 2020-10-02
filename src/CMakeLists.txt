@@ -1,4 +1,5 @@
 add_executable(PROJECT_BIN
+	../extlib/flecs/flecs.c
 	main.cpp
 )
 

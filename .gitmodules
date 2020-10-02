@@ -1,0 +1,3 @@
+[submodule "extlib/flecs"]
+	path = extlib/flecs
+	url = https://github.com/SanderMertens/flecs.git
