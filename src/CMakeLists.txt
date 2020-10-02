@@ -7,11 +7,15 @@ add_executable(${PROJECT_BIN}
 	${PROJECT_SRC}
 	${CMAKE_SOURCE_DIR}/extlib/flecs/flecs.c
 	main.cpp
+	graphics/AnimatedSprite.cpp
+	graphics/Animation.cpp
 	systems/EventSystem.cpp
 	systems/InputSystem.cpp
 	systems/MovementSystem.cpp
-	systems/SpriteSystem.cpp
 	systems/TileLayerRenderingSystem.cpp
+	systems/PlayerAnimationSystem.cpp
+	graphics/AnimatedSprite.cpp
+	graphics/Animation.cpp
 	Context.cpp
 	Ecs.cpp
 	MapLoader.cpp

@@ -11,6 +11,7 @@
 #include "systems/MovementSystem.h"
 #include "systems/SpriteSystem.h"
 #include "systems/TileLayerRenderingSystem.h"
+#include "systems/PlayerAnimationSystem.h"
 #include "Context.h"
 
 namespace ecs
@@ -44,7 +45,22 @@ namespace ecs
 
 		ecs.system<Sprite>()
 			.kind(flecs::OnStore)
-			.each(SpriteSystem::run);
+			.each(SpriteSystem::run<Sprite>);
+
+		ecs.system<AnimatedSprite>()
+			.kind(flecs::OnStore)
+			.each(SpriteSystem::run<AnimatedSprite>);
+
+		ecs.system<const PlayerInput&, AnimatedSprite&, const Position&>()
+			.each(PlayerAnimationSystem::run);
+
+		ecs.system<const PlayerInput&, Velocity&>()
+			.kind(flecs::PreUpdate)
+			.each([](flecs::entity e, const PlayerInput& playerInput, Velocity& velocity)
+			{
+				velocity.velocity = sf::Vector2f(playerInput.direction);
+			});
+
 
 		// TODO - Move to system file
 		ecs.system<>()
