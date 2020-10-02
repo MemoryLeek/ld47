@@ -1,8 +1,11 @@
 #include "Ecs.h"
 
+#include "components/Velocity.h"
+#include "components/Position.h"
 #include "components/PlayerInput.h"
 #include "systems/EventSystem.h"
 #include "systems/InputSystem.h"
+#include "systems/MovementSystem.h"
 #include "Context.h"
 
 namespace ecs
@@ -10,6 +13,8 @@ namespace ecs
 	void registerComponents(flecs::world& ecs)
 	{
 		ecs.component<PlayerInput>();
+		ecs.component<Position>();
+		ecs.component<Velocity>();
 	}
 
 	void registerSystems(flecs::world& ecs)
@@ -21,6 +26,9 @@ namespace ecs
 		ecs.system<PlayerInput>()
 			.kind(flecs::PreFrame)
 			.action(InputSystem::run);
+
+		ecs.system<Position, const Velocity>()
+			.each(MovementSystem::run);
 
 		// TODO - Move to system file
 		ecs.system<>()

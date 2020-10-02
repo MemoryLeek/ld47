@@ -3,6 +3,7 @@ add_executable(PROJECT_BIN
 	main.cpp
 	systems/EventSystem.cpp
 	systems/InputSystem.cpp
+	systems/MovementSystem.cpp
 	Context.cpp
 	Ecs.cpp
 )
