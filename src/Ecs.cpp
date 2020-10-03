@@ -83,10 +83,8 @@ namespace ecs
 			.kind(flecs::PostUpdate)
 			.each(CollisionSolverSystem::run);
 
-		// --- PreStore ---
-
 		ecs.system<const Position&, const Size&, tag::Player>()
-			.kind(flecs::PreStore)
+			.kind(flecs::PostUpdate)
 			.each(CameraSystem::run);
 
 		// --- OnStore ---

@@ -11,6 +11,7 @@
 #include "components/Size.h"
 #include "components/Collidable.h"
 #include "components/DynamicCollidable.h"
+#include "components/Collision.h"
 #include "components/Player.h"
 
 int main(int argc, char* argv[])
