@@ -27,6 +27,11 @@ polygon = PoolVector2Array( 20, 160, 20, 192, 0, 192, 0, 248, 16, 248, 16, 280, 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 292, 160, 292, 192, 240, 192, 240, 224, 228, 224, 228, 280, 368, 280, 368, 248, 384, 248, 384, 192, 364, 192, 364, 160 )
 
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -645.371, -250.225 )
+scale = Vector2( 2.6699, 2.41884 )
+polygon = PoolVector2Array( 227.002, 278.541, 411.357, 278.541, 410.65, 102.476, 386.089, 103.363, 385.359, 262.099, 241.665, 262.239, 241.451, 103.109, 410.501, 102.968, 410.353, 81.9661, 225.559, 82.8942 )
+
 [node name="Portal" type="Area2D" parent="."]
 script = ExtResource( 2 )
 target_scene = ExtResource( 4 )
