@@ -7,5 +7,6 @@
 class EntityFactory
 {
 	public:
+		static void spawnPlayer(flecs::world& ecs, const sf::Vector2f& position);
 		static void spawnKitten(flecs::world& ecs, const sf::Vector2f& position);
 };

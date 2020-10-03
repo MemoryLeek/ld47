@@ -18,7 +18,7 @@
 #include "systems/MovementSystem.h"
 #include "systems/SpriteSystem.h"
 #include "systems/TileLayerRenderingSystem.h"
-#include "systems/PlayerAnimationSystem.h"
+#include "systems/AnimationSystem.h"
 #include "systems/CameraSystem.h"
 #include "systems/CollisionSystem.h"
 #include "systems/CollisionSolverSystem.h"
@@ -39,6 +39,7 @@ namespace ecs
 		ecs.component<Collision>();
 		ecs.component<tag::Collidable>();
 		ecs.component<tag::DynamicCollidable>();
+		ecs.component<tag::Attacking>();
 	}
 
 	void registerSystems(flecs::world& ecs)
@@ -81,7 +82,7 @@ namespace ecs
 				{
 					if(!e.has<tag::Attacking>())
 					{
-						e.set<tag::Attacking>({});
+						e.add<tag::Attacking>();
 					}
 				}
 				else
@@ -95,8 +96,8 @@ namespace ecs
 
 		// --- OnUpdate ---
 
-		ecs.system<const PlayerInput&, AnimatedSprite&, const Position&, tag::Attacking*, const Facing&, const Velocity&>()
-			.each(PlayerAnimationSystem::run);
+		ecs.system<AnimatedSprite&, const Position&, tag::Attacking*, const Facing&, const Velocity&>()
+			.each(AnimationSystem::run);
 
 		// --- PostUpdate ---
 

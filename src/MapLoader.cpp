@@ -235,24 +235,27 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 
 		if (type == "spawn")
 		{
-			auto filter = flecs::filter(m_ecs)
-				.include<Position>()
-				.include<tag::Player>();
+			EntityFactory::spawnPlayer(m_ecs, sf::Vector2f(aabb.left, aabb.top));
 
-			for (auto it : m_ecs.filter(filter))
-			{
-				auto pos = it.table_column<Position>();
 
-				for (auto i : it)
-				{
-					std::cout
-						<< "[MapLoader] Moving player to spawn "
-						<< "{ " << aabb.left << ", " << aabb.top << " }"
-						<< std::endl;
+			// auto filter = flecs::filter(m_ecs)
+			// 	.include<Position>()
+			// 	.include<tag::Player>();
 
-					pos[i].position = sf::Vector2f(aabb.left, aabb.top);
-				}
-			}
+			// for (auto it : m_ecs.filter(filter))
+			// {
+			// 	auto pos = it.table_column<Position>();
+
+			// 	for (auto i : it)
+			// 	{
+			// 		std::cout
+			// 			<< "[MapLoader] Moving player to spawn "
+			// 			<< "{ " << aabb.left << ", " << aabb.top << " }"
+			// 			<< std::endl;
+
+			// 		pos[i].position = sf::Vector2f(aabb.left, aabb.top);
+			// 	}
+			// }
 		}
 	}
 }

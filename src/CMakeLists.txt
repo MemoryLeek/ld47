@@ -13,7 +13,7 @@ add_executable(${PROJECT_BIN}
 	systems/InputSystem.cpp
 	systems/MovementSystem.cpp
 	systems/TileLayerRenderingSystem.cpp
-	systems/PlayerAnimationSystem.cpp
+	systems/AnimationSystem.cpp
 	systems/CameraSystem.cpp
 	systems/CollisionSystem.cpp
 	systems/CollisionSolverSystem.cpp

@@ -6,7 +6,7 @@
 #include "Ecs.h"
 #include "MapLoader.h"
 #include "components/AnimatedSprite.h"
-#include "systems/PlayerAnimationSystem.h"
+#include "systems/AnimationSystem.h"
 #include "components/Velocity.h"
 #include "components/Facing.h"
 #include "components/Size.h"
@@ -28,8 +28,6 @@ int main(int argc, char* argv[])
 	sf::Texture tileset;
 	tileset.loadFromFile("assets/tileset.png");
 
-	PlayerAnimationSystem::initialize(tileset);
-
 	Context ctx(window, tileset);
 
 	flecs::world ecs;
@@ -37,18 +35,6 @@ int main(int argc, char* argv[])
 
 	ecs::registerComponents(ecs);
 	ecs::registerSystems(ecs);
-
-	auto player = ecs.entity("Player")
-		.set<AnimatedSprite>({.sprite = sf::AnimatedSprite()})
-		.set<Position>({})
-		.set<Velocity>({})
-		.set<Size>({.size = sf::Vector2f(32.0f, 32.0f)})
-		.add<PlayerInput>()
-		.add<tag::Collidable>()
-		.add<tag::DynamicCollidable>()
-		.add<tag::Player>()
-		.add<Facing>()
-		;
 
 	MapLoader mapLoader(ecs, tileset);
 	mapLoader.loadFromFile("assets/map.tmx");
