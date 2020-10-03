@@ -1,9 +1,11 @@
 #include "Ecs.h"
 
 #include "components/Collidable.h"
+#include "components/Attacking.h"
 #include "components/Collision.h"
 #include "components/DynamicCollidable.h"
 #include "components/Velocity.h"
+#include "components/Facing.h"
 #include "components/Position.h"
 #include "components/Map.h"
 #include "components/MapLoadRequest.h"
@@ -45,7 +47,7 @@ namespace ecs
 			.kind(flecs::PreFrame)
 			.action(EventSystem::run);
 
-		ecs.system<PlayerInput>()
+		ecs.system<PlayerInput, Facing>()
 			.kind(flecs::PreFrame)
 			.action(InputSystem::run);
 
@@ -59,13 +61,6 @@ namespace ecs
 
 		// --- PreUpdate ---
 
-		ecs.system<const PlayerInput&, Velocity&>()
-			.kind(flecs::PreUpdate)
-			.each([](flecs::entity e, const PlayerInput& playerInput, Velocity& velocity)
-			{
-				velocity.velocity = sf::Vector2f(playerInput.direction);
-			});
-
 		ecs.system<Position, const Velocity>()
 			.kind(flecs::PreUpdate)
 			.each(MovementSystem::run);
@@ -74,9 +69,31 @@ namespace ecs
 			.kind(flecs::PreUpdate)
 			.action(CollisionSystem::run);
 
+		ecs.system<const PlayerInput&, Velocity&>()
+			.kind(flecs::PreUpdate)
+			.each([](flecs::entity e, const PlayerInput& playerInput, Velocity& velocity)
+			{
+				velocity.velocity = sf::Vector2f(playerInput.direction);
+
+				if(playerInput.attacking)
+				{
+					if(!e.has<tag::Attacking>())
+					{
+						e.set<tag::Attacking>({});
+					}
+				}
+				else
+				{
+					if(e.has<tag::Attacking>())
+					{
+						e.remove<tag::Attacking>();
+					}
+				}
+			});
+
 		// --- OnUpdate ---
 
-		ecs.system<const PlayerInput&, AnimatedSprite&, const Position&>()
+		ecs.system<const PlayerInput&, AnimatedSprite&, const Position&, tag::Attacking*, const Facing&, const Velocity&>()
 			.each(PlayerAnimationSystem::run);
 
 		// --- PostUpdate ---

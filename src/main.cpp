@@ -8,6 +8,7 @@
 #include "components/AnimatedSprite.h"
 #include "systems/PlayerAnimationSystem.h"
 #include "components/Velocity.h"
+#include "components/Facing.h"
 #include "components/Size.h"
 #include "components/Collidable.h"
 #include "components/DynamicCollidable.h"
@@ -49,6 +50,7 @@ int main(int argc, char* argv[])
 		.add<tag::Collidable>()
 		.add<tag::DynamicCollidable>()
 		.add<tag::Player>()
+		.add<Facing>()
 		;
 
 	auto mapChangeRequestQuery = ecs.query<const MapLoadRequest&>();
