@@ -13,6 +13,9 @@
 #include "components/DynamicCollidable.h"
 #include "components/Collision.h"
 #include "components/Player.h"
+#include "components/Map.h"
+#include "components/TileLayer.h"
+#include "components/MapLoadRequest.h"
 
 int main(int argc, char* argv[])
 {
@@ -48,9 +51,23 @@ int main(int argc, char* argv[])
 		.add<tag::Player>()
 		;
 
+	auto mapChangeRequestQuery = ecs.query<const MapLoadRequest&>();
+
 	sf::Clock clock;
 	while (ecs.progress(clock.restart().asSeconds()))
 	{
+		for (auto it : mapChangeRequestQuery)
+		{
+			flecs::column<MapLoadRequest> request(it, 1);
+
+			mapLoader.deleteMapEntities(ecs);
+
+			for (auto i : it)
+			{
+				mapLoader.loadFromFile(request->path);
+				it.entity(i).remove<MapLoadRequest>();
+			}
+		}
 	}
 
 	return 0;

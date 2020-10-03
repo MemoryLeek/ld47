@@ -13,6 +13,7 @@ class MapLoader
 		MapLoader(flecs::world& ecs, const sf::Texture& tileset);
 
 		void loadFromFile(const std::string& path) const;
+		void deleteMapEntities(flecs::world& ecs) const;
 
 	private:
 		void loadTileLayer(const tmx::Map& map, const tmx::TileLayer& layer, flecs::entity& mapEntity) const;

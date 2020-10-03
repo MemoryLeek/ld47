@@ -51,6 +51,21 @@ void MapLoader::loadFromFile(const std::string& path) const
 	}
 }
 
+void MapLoader::deleteMapEntities(flecs::world& ecs) const
+{
+	auto filter = flecs::filter(m_ecs)
+		.include<Map>();
+
+	for (auto it : m_ecs.filter(filter))
+	{
+		for (auto i : it)
+		{
+			auto map = it.entity(i);
+			map.destruct();
+		}
+	}
+}
+
 void MapLoader::loadTileLayer(const tmx::Map& map, const tmx::TileLayer& layer, flecs::entity& mapEntity) const
 {
 	const auto& tileSize = map.getTileSize();

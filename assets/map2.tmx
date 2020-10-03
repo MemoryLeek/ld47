@@ -8,13 +8,12 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJzt0DcBAlEUAMFPsgAHFkgW4MACyQLJAskCyQLJI4OEdzXFlNtsKaVUpkKVGouAOg0ymrSCfZsOXXr0g/2AITkjxsF+wpQZ82D7s2TFmg3bYL9jz4Ejp2B/5sKVG/dg/+DJizefAg/+ivsC6DdNhw==
+   eJztzM0VQDAUBtG30YQmNKEJTQQ1RNQg1OCnhqCvTAE23zl2LO5yxplZiw49CjQCjwEBI0qxnxAxY0El9is27DhQi33CiQu32D5xLzx+35EBrdxSLg==
   </data>
  </layer>
  <objectgroup id="2" name="Collidables">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
-  <object id="4" x="160" y="0" width="96" height="160"/>
  </objectgroup>
 </map>

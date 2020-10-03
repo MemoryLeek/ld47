@@ -6,6 +6,7 @@
 #include "components/Velocity.h"
 #include "components/Position.h"
 #include "components/Map.h"
+#include "components/MapLoadRequest.h"
 #include "components/TileLayer.h"
 #include "components/PlayerInput.h"
 #include "components/Sprite.h"
@@ -25,6 +26,7 @@ namespace ecs
 	void registerComponents(flecs::world& ecs)
 	{
 		ecs.component<Map>();
+		ecs.component<MapLoadRequest>();
 		ecs.component<TileLayer>();
 		ecs.component<PlayerInput>();
 		ecs.component<Position>();
