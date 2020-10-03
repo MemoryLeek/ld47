@@ -5,6 +5,9 @@
 
 #include "components/Map.h"
 #include "components/TileLayer.h"
+#include "components/Position.h"
+#include "components/Size.h"
+#include "components/Collidable.h"
 
 #include "MapLoader.h"
 
@@ -29,9 +32,16 @@ void MapLoader::loadFromFile(const std::string& path) const
 		switch (type)
 		{
 			case tmx::Layer::Type::Tile:
-				std::cout << "[tmx] Loading layer: " << layer->getName() << std::endl;
+				std::cout << "[tmx] Loading tile layer: " << layer->getName() << std::endl;
 				loadTileLayer(map
 					, layer->getLayerAs<tmx::TileLayer>()
+					, mapEntity
+					);
+				break;
+			case tmx::Layer::Type::Object:
+				std::cout << "[tmx] Loading object layer: " << layer->getName() << std::endl;
+				loadObjectLayer(map
+					, layer->getLayerAs<tmx::ObjectGroup>()
 					, mapEntity
 					);
 				break;
@@ -84,6 +94,41 @@ void MapLoader::loadTileLayer(const tmx::Map& map, const tmx::TileLayer& layer, 
 			.vbo = vbo,
 			.texture = &m_tileset,
 		});
+}
+
+void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& layer, flecs::entity& mapEntity) const
+{
+	const auto& properties = layer.getProperties();
+	const auto isLayerCollidable = std::find_if(properties.begin()
+		, properties.end()
+		, [](auto p)
+		{
+			return p.getType() == tmx::Property::Type::Boolean
+				&& p.getBoolValue()
+				&& p.getName() == "collidable"
+				;
+		}
+		) != properties.end();
+
+	for (const auto& object : layer.getObjects())
+	{
+		if (isLayerCollidable)
+		{
+			const auto& aabb = object.getAABB();
+			m_ecs.entity()
+				.add_childof(mapEntity)
+				.add<tag::Collidable>()
+				.set<Position>(
+				{
+					.position = sf::Vector2f(aabb.left, aabb.top),
+				})
+				.set<Size>(
+				{
+					.size = sf::Vector2f(aabb.width, aabb.height),
+				})
+				;
+		}
+	}
 }
 
 size_t MapLoader::getActiveTileCount(const tmx::TileLayer& layer)

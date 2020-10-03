@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="25" columns="5">
-  <image source="tileset.png" width="160" height="160"/>
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="6">
+ <properties>
+  <property name="collidable" type="bool" value="true"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="40" columns="8">
+  <image source="tileset.png" width="256" height="160"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJztyzcWgCAURcGPYg4IBnD/G/Vu4R1biinHmVmDFh4dXkGPASMmzOJfsGLDjiD+AxEJJy7x33iQUcRbVX99v1YUtQ==
+   eJzty7kVgCAURcGPYuAWuBAIGijYf4veFt4xJZhwnJk1aOHR4RX0GDBiwiz+BSs27AjiPxCRcOIS/40HGUW8VfXXB1KFHp8=
   </data>
  </layer>
+ <objectgroup id="2" name="Collidables">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <object id="4" x="160" y="0" width="96" height="160"/>
+ </objectgroup>
 </map>

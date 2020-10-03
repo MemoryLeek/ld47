@@ -9,6 +9,9 @@
 #include "systems/PlayerAnimationSystem.h"
 #include "components/Velocity.h"
 #include "components/Size.h"
+#include "components/Collidable.h"
+#include "components/DynamicCollidable.h"
+#include "components/Player.h"
 
 int main(int argc, char* argv[])
 {
@@ -33,12 +36,16 @@ int main(int argc, char* argv[])
 	MapLoader mapLoader(ecs, tileset);
 	mapLoader.loadFromFile("assets/map.tmx");
 
-	auto player = ecs.entity()
+	auto player = ecs.entity("Player")
 		.set<AnimatedSprite>({.sprite = sf::AnimatedSprite()})
 		.set<Position>({})
 		.set<Velocity>({})
 		.set<Size>({.size = sf::Vector2f(32.0f, 32.0f)})
-		.set<PlayerInput>({});
+		.add<PlayerInput>()
+		.add<tag::Collidable>()
+		.add<tag::DynamicCollidable>()
+		.add<tag::Player>()
+		;
 
 	sf::Clock clock;
 	while (ecs.progress(clock.restart().asSeconds()))

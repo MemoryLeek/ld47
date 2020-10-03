@@ -15,6 +15,8 @@ add_executable(${PROJECT_BIN}
 	systems/TileLayerRenderingSystem.cpp
 	systems/PlayerAnimationSystem.cpp
 	systems/CameraSystem.cpp
+	systems/CollisionSystem.cpp
+	systems/CollisionSolverSystem.cpp
 	graphics/AnimatedSprite.cpp
 	graphics/Animation.cpp
 	Context.cpp

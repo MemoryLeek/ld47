@@ -16,6 +16,7 @@ class MapLoader
 
 	private:
 		void loadTileLayer(const tmx::Map& map, const tmx::TileLayer& layer, flecs::entity& mapEntity) const;
+		void loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& layer, flecs::entity& mapEntity) const;
 
 		static size_t getActiveTileCount(const tmx::TileLayer& layer);
 		static std::array<sf::Vector2f, 6> calculateTilePosition(const unsigned int tx, const unsigned int ty, const tmx::Vector2u tileSize);
