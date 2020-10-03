@@ -11,7 +11,7 @@
 class PlayerAnimationSystem
 {
 private:
-	static sf::Animation animationDown, animationUp, animationLeft, animationRight;
+	static sf::Animation animationDown, animationUp, animationLeft, animationRight, animationIdle;
 public:
 	static void initialize(const sf::Texture& tileset);
 	static void run(flecs::entity e, const PlayerInput& playerInput, AnimatedSprite& animatedSprite, const Position& pos);
