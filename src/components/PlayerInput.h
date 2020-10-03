@@ -5,4 +5,5 @@
 struct PlayerInput
 {
 	sf::Vector2i direction;
+	bool attacking;
 };
