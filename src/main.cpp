@@ -38,9 +38,6 @@ int main(int argc, char* argv[])
 	ecs::registerComponents(ecs);
 	ecs::registerSystems(ecs);
 
-	MapLoader mapLoader(ecs, tileset);
-	mapLoader.loadFromFile("assets/map.tmx");
-
 	auto player = ecs.entity("Player")
 		.set<AnimatedSprite>({.sprite = sf::AnimatedSprite()})
 		.set<Position>({})
@@ -52,6 +49,9 @@ int main(int argc, char* argv[])
 		.add<tag::Player>()
 		.add<Facing>()
 		;
+
+	MapLoader mapLoader(ecs, tileset);
+	mapLoader.loadFromFile("assets/map.tmx");
 
 	auto mapChangeRequestQuery = ecs
 		.query<MapLoadRequest>();

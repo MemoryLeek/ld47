@@ -9,6 +9,7 @@
 #include "components/Position.h"
 #include "components/Size.h"
 #include "components/Collidable.h"
+#include "components/Player.h"
 
 #include "EntityFactory.h"
 #include "MapLoader.h"
@@ -195,18 +196,21 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 				;
 		}
 
-		const auto isEnemySpawn = std::find_if(objectProperties.begin()
+		const auto typeIter = std::find_if(objectProperties.begin()
 			, objectProperties.end()
 			, [](auto p)
 			{
 				return p.getType() == tmx::Property::Type::String
 					&& p.getName() == "type"
-					&& p.getStringValue() == "enemy"
 					;
 			}
-			) != objectProperties.end();
+			);
 
-		if (isEnemySpawn)
+		const auto type = typeIter != objectProperties.end()
+			? typeIter->getStringValue()
+			: "";
+
+		if (type == "enemy")
 		{
 			const auto& enemy = std::find_if(objectProperties.begin()
 				, objectProperties.end()
@@ -227,6 +231,28 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 				std::cout << "[MapLoader] Undefined enemy type " << enemy << std::endl;
 			}
 
+		}
+
+		if (type == "spawn")
+		{
+			auto filter = flecs::filter(m_ecs)
+				.include<Position>()
+				.include<tag::Player>();
+
+			for (auto it : m_ecs.filter(filter))
+			{
+				auto pos = it.table_column<Position>();
+
+				for (auto i : it)
+				{
+					std::cout
+						<< "[MapLoader] Moving player to spawn "
+						<< "{ " << aabb.left << ", " << aabb.top << " }"
+						<< std::endl;
+
+					pos[i].position = sf::Vector2f(aabb.left, aabb.top);
+				}
+			}
 		}
 	}
 }
