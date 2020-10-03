@@ -22,6 +22,7 @@ add_executable(${PROJECT_BIN}
 	graphics/Animation.cpp
 	Context.cpp
 	Ecs.cpp
+	EntityFactory.cpp
 	MapLoader.cpp
 )
 

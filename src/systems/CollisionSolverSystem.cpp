@@ -26,13 +26,13 @@ void CollisionSolverSystem::run(flecs::entity e
 					position.position.y = (int)(position.position.y - overlap.y);
 				}
 
-				std::cout
-					<< "Solved collision for [" << e.name() << "] "
-					<< "with overlap "
-					<< "{ " << overlap.x << ", " << overlap.y << " } "
-					<< "resulting in new position of "
-					<< "{ " << position.position.x << ", " << position.position.y << " }"
-					<< std::endl;
+				// std::cout
+				// 	<< "Solved collision for [" << e.name() << "] "
+				// 	<< "with overlap "
+				// 	<< "{ " << overlap.x << ", " << overlap.y << " } "
+				// 	<< "resulting in new position of "
+				// 	<< "{ " << position.position.x << ", " << position.position.y << " }"
+				// 	<< std::endl;
 
 				ce.remove<Collision>();
 			}

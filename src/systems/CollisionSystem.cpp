@@ -33,13 +33,13 @@ void CollisionSystem::run(flecs::iter& it
 				auto otherBoundingBox = sf::FloatRect(p[oi].position, s[oi].size);
 				if (boundingBox.intersects(otherBoundingBox))
 				{
-					std::cout << "Adding collision to "
-						<< entity.name()
-						<< " with object at "
-						<< "{ " << p[oi].position.x << ", " << p[oi].position.y << " }"
-						<< " of size "
-						<< "{ " << s[oi].size.x << ", " << s[oi].size.y << " }"
-						<< std::endl;
+					// std::cout << "Adding collision to "
+					// 	<< entity.name()
+					// 	<< " with object at "
+					// 	<< "{ " << p[oi].position.x << ", " << p[oi].position.y << " }"
+					// 	<< " of size "
+					// 	<< "{ " << s[oi].size.x << ", " << s[oi].size.y << " }"
+					// 	<< std::endl;
 
 					it.world()
 						.entity("Collision")

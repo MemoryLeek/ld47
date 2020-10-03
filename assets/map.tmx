@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="16">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="18">
  <properties>
   <property name="collidable" type="bool" value="true"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="336" columns="28">
-  <image source="tileset.png" width="896" height="384"/>
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="252" columns="21">
+  <image source="tileset.png" width="700" height="384"/>
  </tileset>
  <layer id="3" name="Background" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJwzZWRgMB3Fo5hMDABsbh5h
+   eJx7wcDA8GIUj2IyMQDf3YKB
   </data>
  </layer>
  <layer id="1" name="Foreground" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJyVwwVVRAEAAMF/cDgF8DOkAq4VcK2AawVcK+BaAdcKuFZApgL7dkJBECSRTJgUUkkjnQwyySKbAgopIkKUGHESFFNCKWWUU0ElVVRTQy111NNAI00000IrbbTTQSdddNNDL330M8AgQwwzwihjjDPBJFNMM8Msc8yzwCJLLLPCKmuss8EmW2yzwy577HPAIUccc8IpZ5xzwSVXXHPDLXfc88AjTzzzwitvvPPBJ19888MvQcgkkUyYFFJJI50ccskjnwIKKSJClBhxEqHg3/0B/b42oA==
+   eJyVw7VWFQAAANBHS8yUAjKTUjMgqbPSMRPSM50zXc6EQcx0znR+C/cXuOfcoEAgEGyIoYYZboQfjDTKaGOMNc54E0z0o59MMtkUP5tqmulmmGmW2X4xx1zzzLfAQoss9qslllpmuRVW+s3v/vCnVVZbY6111ttgo00222Krbbb7yw477bLbHnvts98BBx1y2BFHHXPcCSedctoZZ51z3gUXXXLZFVf97ZrrbrjpH//6z/9uue2Ou+6574GHHnnsiaeeee6Fl1557Y233nnvg48++eyLr4H3ewMjpjl/
   </data>
  </layer>
  <objectgroup id="2" name="Collidables">
@@ -36,6 +36,12 @@
    <properties>
     <property name="path" value="assets/map2.tmx"/>
     <property name="type" value="mapChange"/>
+   </properties>
+  </object>
+  <object id="16" x="96" y="96" width="32" height="32">
+   <properties>
+    <property name="enemy" value="kitten"/>
+    <property name="type" value="enemy"/>
    </properties>
   </object>
  </objectgroup>

@@ -10,6 +10,7 @@
 #include "components/Size.h"
 #include "components/Collidable.h"
 
+#include "EntityFactory.h"
 #include "MapLoader.h"
 
 MapLoader::MapLoader(flecs::world& ecs, const sf::Texture& tileset)
@@ -192,6 +193,40 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 					.path = path,
 				})
 				;
+		}
+
+		const auto isEnemySpawn = std::find_if(objectProperties.begin()
+			, objectProperties.end()
+			, [](auto p)
+			{
+				return p.getType() == tmx::Property::Type::String
+					&& p.getName() == "type"
+					&& p.getStringValue() == "enemy"
+					;
+			}
+			) != objectProperties.end();
+
+		if (isEnemySpawn)
+		{
+			const auto& enemy = std::find_if(objectProperties.begin()
+				, objectProperties.end()
+				, [](auto p)
+				{
+					return p.getType() == tmx::Property::Type::String
+						&& p.getName() == "enemy"
+						;
+				}
+				)->getStringValue();
+
+			if (enemy == "kitten")
+			{
+				EntityFactory::spawnKitten(m_ecs, sf::Vector2f(aabb.left, aabb.top));
+			}
+			else
+			{
+				std::cout << "[MapLoader] Undefined enemy type " << enemy << std::endl;
+			}
+
 		}
 	}
 }
