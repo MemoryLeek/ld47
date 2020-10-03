@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="10">
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="16">
  <properties>
   <property name="collidable" type="bool" value="true"/>
  </properties>
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="252" columns="21">
-  <image source="tileset.png" width="700" height="384"/>
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="336" columns="28">
+  <image source="tileset.png" width="896" height="384"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="16" height="14">
+ <layer id="3" name="Background" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJzt0bkBgkAABdHVIrQIxRrwaEGOFhBtQdQWlLMCUIQaFPpyNtuMXWKDF07y/0QIMcUdMRJkyFHAHzDDHCWeeOGNBq1Gv8ASFlb44IsOvUZvY40NtthpNKo9HLjwDFspwAEhjjgZ9mdEuOCKm2Evf3so36WGvfytUr6rR2zwN94PYXhUig==
+   eJwzZWRgMB3Fo5hMDABsbh5h
+  </data>
+ </layer>
+ <layer id="1" name="Foreground" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyVwwVVRAEAAMF/cDgF8DOkAq4VcK2AawVcK+BaAdcKuFZApgL7dkJBECSRTJgUUkkjnQwyySKbAgopIkKUGHESFFNCKWWUU0ElVVRTQy111NNAI00000IrbbTTQSdddNNDL330M8AgQwwzwihjjDPBJFNMM8Msc8yzwCJLLLPCKmuss8EmW2yzwy577HPAIUccc8IpZ5xzwSVXXHPDLXfc88AjTzzzwitvvPPBJ19888MvQcgkkUyYFFJJI50ccskjnwIKKSJClBhxEqHg3/0B/b42oA==
   </data>
  </layer>
  <objectgroup id="2" name="Collidables">
   <properties>
    <property name="collidable" type="bool" value="true"/>
   </properties>
-  <object id="4" x="64" y="0" width="96" height="64"/>
-  <object id="6" x="224" y="0" width="32" height="64"/>
+  <object id="4" x="0" y="0" width="64" height="152"/>
+  <object id="6" x="64" y="0" width="256" height="32"/>
+  <object id="7" x="320" y="0" width="64" height="152"/>
+  <object id="8" x="288" y="160" width="96" height="120"/>
+  <object id="9" x="0" y="160" width="96" height="120"/>
+  <object id="10" x="64" y="32" width="64" height="32"/>
+  <object id="11" x="160" y="32" width="64" height="32"/>
+  <object id="12" x="256" y="32" width="64" height="32"/>
+  <object id="13" x="96" y="192" width="64" height="88"/>
+  <object id="14" x="224" y="192" width="64" height="88"/>
  </objectgroup>
- <objectgroup id="3" name="Triggers">
-  <object id="9" x="160" y="0" width="64" height="32">
+ <objectgroup id="4" name="Triggers">
+  <object id="15" x="168" y="120" width="48" height="32">
    <properties>
     <property name="path" value="assets/map2.tmx"/>
     <property name="type" value="mapChange"/>
