@@ -7,5 +7,5 @@
 class MovementSystem
 {
 	public:
-		static void run(flecs::entity e, Position pos, Velocity vel);
+		static void run(flecs::entity e, Position& pos, const Velocity& vel);
 };

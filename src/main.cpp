@@ -8,13 +8,13 @@
 #include "components/AnimatedSprite.h"
 #include "systems/PlayerAnimationSystem.h"
 #include "components/Velocity.h"
+#include "components/Size.h"
 
 int main(int argc, char* argv[])
 {
 	sf::RenderWindow window(sf::VideoMode(960, 540), "LD47");
 
 	auto view = window.getDefaultView();
-	// view.zoom(0.25f);
 	window.setView(view);
 
 	sf::Texture tileset;
@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
 		.set<AnimatedSprite>({.sprite = sf::AnimatedSprite()})
 		.set<Position>({})
 		.set<Velocity>({})
+		.set<Size>({.size = sf::Vector2f(32.0f, 32.0f)})
 		.set<PlayerInput>({});
 
 	sf::Clock clock;

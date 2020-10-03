@@ -12,6 +12,7 @@
 #include "systems/SpriteSystem.h"
 #include "systems/TileLayerRenderingSystem.h"
 #include "systems/PlayerAnimationSystem.h"
+#include "systems/CameraSystem.h"
 #include "Context.h"
 
 namespace ecs
@@ -38,6 +39,9 @@ namespace ecs
 
 		ecs.system<Position, const Velocity>()
 			.each(MovementSystem::run);
+
+		ecs.system<const Position&, const Size&>()
+			.each(CameraSystem::run);
 
 		ecs.system<const TileLayer>()
 			.kind(flecs::OnStore)
