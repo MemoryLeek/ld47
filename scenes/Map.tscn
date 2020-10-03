@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Kitten.tscn" type="PackedScene" id=2]
 
 [node name="Map" type="Node2D"]
 
@@ -11,8 +10,13 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 384, 384 )
 
-[node name="Kitten" parent="." instance=ExtResource( 2 )]
-position = Vector2( 97.108, 321.614 )
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="Kitten2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 192.434, 205.798 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 0, 152, 64, 152, 64, 64, 128, 64, 128, 40, 160, 40, 160, 64, 224, 64, 224, 40, 256, 40, 256, 64, 320, 64, 320, 152, 384, 152, 384, 0 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 20, 160, 20, 192, 0, 192, 0, 248, 16, 248, 16, 280, 156, 280, 156, 224, 144, 224, 144, 192, 92, 192, 92, 160 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 292, 160, 292, 192, 240, 192, 240, 224, 228, 224, 228, 280, 368, 280, 368, 248, 384, 248, 384, 192, 364, 192, 364, 160 )

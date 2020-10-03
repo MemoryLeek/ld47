@@ -12,8 +12,8 @@ func _ready():
 func _process(delta):
 	
 	var velocity = Vector2(0, 0)
-
 	ACTION = "Idle"
+	
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= SPEED
 		FACING = "Left"
