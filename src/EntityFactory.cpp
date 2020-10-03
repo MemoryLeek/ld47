@@ -17,7 +17,7 @@ void EntityFactory::spawnPlayer(flecs::world& ecs, const sf::Vector2f& position)
 
 	AnimationCollection animations;
 	animations.animationIdle.setSpriteSheet(tileset);
-	animations.animationIdle.addFrame(sf::IntRect(12*32, 32, 32, 32));
+	animations.animationIdle.addFrame(sf::IntRect(12*32, 0, 32, 32));
 	animations.animationUp.setSpriteSheet(tileset);
 	animations.animationUp.addFrame(sf::IntRect(13*32, 0, 32, 32));
 	animations.animationUp.addFrame(sf::IntRect(14*32, 0, 32, 32));
@@ -71,7 +71,7 @@ void EntityFactory::spawnPlayer(flecs::world& ecs, const sf::Vector2f& position)
 
 	auto player = ecs.entity("Player")
 		.set<AnimatedSprite>({.sprite = sf::AnimatedSprite(), .animations = animations})
-		.set<Position>({})
+		.set<Position>({.position = position})
 		.set<Velocity>({})
 		.set<Size>({.size = sf::Vector2f(32.0f, 32.0f)})
 		.add<PlayerInput>()
@@ -89,9 +89,9 @@ void EntityFactory::spawnKitten(flecs::world& ecs, const sf::Vector2f& position)
 		<< std::endl;
 
 	auto context = static_cast<Context*>(ecs.get_context());
-	auto tileset = context->tileset();
+	auto& tileset = context->tileset();
 
-	static AnimationCollection animations;
+	AnimationCollection animations;
 	animations.animationIdle.setSpriteSheet(tileset);
 	animations.animationIdle.addFrame(sf::IntRect(12*32, 32, 32, 32));
 	animations.animationUp.setSpriteSheet(tileset);

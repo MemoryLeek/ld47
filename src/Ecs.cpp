@@ -31,6 +31,7 @@ namespace ecs
 	{
 		ecs.component<Map>();
 		ecs.component<MapLoadRequest>();
+		ecs.component<AnimatedSprite>();
 		ecs.component<TileLayer>();
 		ecs.component<PlayerInput>();
 		ecs.component<Position>();
