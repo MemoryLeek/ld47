@@ -97,14 +97,12 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 10, 16 )
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 13 )
 animation = "Idle_Down"
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 14 )

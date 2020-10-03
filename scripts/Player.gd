@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 const SPEED = 100
 var FACING = "Down"
@@ -11,23 +11,26 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
+	var velocity = Vector2(0, 0)
 	ACTION = "Idle"
 	
 	if Input.is_action_pressed("ui_left"):
-		position.x -= SPEED * delta
+		velocity.x -= SPEED
 		FACING = "Left"
 		ACTION = "Walk"
 	if Input.is_action_pressed("ui_right"):
-		position.x += SPEED * delta
+		velocity.x += SPEED
 		FACING = "Right"
 		ACTION = "Walk"
 	if Input.is_action_pressed("ui_up"):
-		position.y -= SPEED * delta
+		velocity.y -= SPEED
 		FACING = "Up"
 		ACTION = "Walk"
 	if Input.is_action_pressed("ui_down"):
-		position.y += SPEED * delta
+		velocity.y += SPEED
 		FACING = "Down"
 		ACTION = "Walk"
+	
+	move_and_slide(velocity)
 	
 	$AnimatedSprite.play(ACTION + "_" + FACING)
