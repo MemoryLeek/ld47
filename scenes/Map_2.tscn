@@ -1,13 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/map2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 12 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6, 10 )
 
 [node name="Map 2" type="Node2D"]
 
@@ -26,25 +20,24 @@ polygon = PoolVector2Array( 248, 216, 308, 216, 308, 252, 324, 252, 324, 296, 35
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 84, 180, 84, 248, 140, 248, 140, 184, 164, 184, 164, 200, 220, 200, 220, 184, 248, 184, 248, 168, 236, 168, 236, 160, 220, 160, 220, 152, 216, 152, 216, 148, 212, 148, 212, 140, 208, 140, 208, 136, 208, 136, 204, 136, 204, 132, 184, 132, 184, 136, 180, 136, 180, 144, 172, 144, 172, 160, 140, 160, 140, 180 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 32, 148 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 32, 140, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 140 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 156, 116 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 124, -32 )
+polygon = PoolVector2Array( 32, 140, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 140 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 348, 160 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 200, -28 )
+polygon = PoolVector2Array( 24, 136, 24, 132, 36, 132, 36, 136 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 230, 114 )
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 320, 16 )
+polygon = PoolVector2Array( 32, 136, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 136 )
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 294, 246 )
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 264, 104 )
+polygon = PoolVector2Array( 32, 136, 24, 136, 24, 132, 36, 132, 36, 136 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 340 )
