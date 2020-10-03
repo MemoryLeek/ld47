@@ -4,6 +4,7 @@
 #include "tmxlite/TileLayer.hpp"
 
 #include "components/Map.h"
+#include "components/MapChangeTrigger.h"
 #include "components/TileLayer.h"
 #include "components/Position.h"
 #include "components/Size.h"
@@ -19,6 +20,8 @@ MapLoader::MapLoader(flecs::world& ecs, const sf::Texture& tileset)
 
 void MapLoader::loadFromFile(const std::string& path) const
 {
+	std::cout << "[tmx] Loading map: " << path << std::endl;
+
 	tmx::Map map;
 	map.load(path);
 
@@ -113,9 +116,9 @@ void MapLoader::loadTileLayer(const tmx::Map& map, const tmx::TileLayer& layer, 
 
 void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& layer, flecs::entity& mapEntity) const
 {
-	const auto& properties = layer.getProperties();
-	const auto isLayerCollidable = std::find_if(properties.begin()
-		, properties.end()
+	const auto& layerProperties = layer.getProperties();
+	const auto isLayerCollidable = std::find_if(layerProperties.begin()
+		, layerProperties.end()
 		, [](auto p)
 		{
 			return p.getType() == tmx::Property::Type::Boolean
@@ -123,13 +126,15 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 				&& p.getName() == "collidable"
 				;
 		}
-		) != properties.end();
+		) != layerProperties.end();
 
 	for (const auto& object : layer.getObjects())
 	{
+		const auto& objectProperties = object.getProperties();
+		const auto& aabb = object.getAABB();
+
 		if (isLayerCollidable)
 		{
-			const auto& aabb = object.getAABB();
 			m_ecs.entity()
 				.add_childof(mapEntity)
 				.add<tag::Collidable>()
@@ -140,6 +145,51 @@ void MapLoader::loadObjectLayer(const tmx::Map& map, const tmx::ObjectGroup& lay
 				.set<Size>(
 				{
 					.size = sf::Vector2f(aabb.width, aabb.height),
+				})
+				;
+		}
+
+		const auto isMapChangeTrigger = std::find_if(objectProperties.begin()
+			, objectProperties.end()
+			, [](auto p)
+			{
+				return p.getType() == tmx::Property::Type::String
+					&& p.getName() == "type"
+					&& p.getStringValue() == "mapChange"
+					;
+			}
+			) != objectProperties.end();
+
+		if (isMapChangeTrigger)
+		{
+			const auto& path = std::find_if(objectProperties.begin()
+				, objectProperties.end()
+				, [](auto p)
+				{
+					return p.getType() == tmx::Property::Type::String
+						&& p.getName() == "path"
+						;
+				}
+				)->getStringValue();
+
+			std::cout << "[tmx] Map change trigger to ["
+				<< path
+				<< "] loaded"
+				<< std::endl;
+
+			m_ecs.entity()
+				.add_childof(mapEntity)
+				.set<Position>(
+				{
+					.position = sf::Vector2f(aabb.left, aabb.top),
+				})
+				.set<Size>(
+				{
+					.size = sf::Vector2f(aabb.width, aabb.height),
+				})
+				.set<MapChangeTrigger>(
+				{
+					.path = path,
 				})
 				;
 		}

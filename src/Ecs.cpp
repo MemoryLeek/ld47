@@ -9,6 +9,7 @@
 #include "components/Position.h"
 #include "components/Map.h"
 #include "components/MapLoadRequest.h"
+#include "components/MapChangeTrigger.h"
 #include "components/TileLayer.h"
 #include "components/PlayerInput.h"
 #include "components/Sprite.h"
@@ -21,6 +22,7 @@
 #include "systems/CameraSystem.h"
 #include "systems/CollisionSystem.h"
 #include "systems/CollisionSolverSystem.h"
+#include "systems/MapChangeSystem.h"
 #include "Context.h"
 
 namespace ecs
@@ -97,6 +99,10 @@ namespace ecs
 			.each(PlayerAnimationSystem::run);
 
 		// --- PostUpdate ---
+
+		ecs.system<const Position, const Size, const MapChangeTrigger>()
+			.kind(flecs::PostUpdate)
+			.each(MapChangeSystem::run);
 
 		ecs.system<Position, tag::DynamicCollidable>()
 			.kind(flecs::PostUpdate)

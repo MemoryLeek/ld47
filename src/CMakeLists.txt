@@ -17,6 +17,7 @@ add_executable(${PROJECT_BIN}
 	systems/CameraSystem.cpp
 	systems/CollisionSystem.cpp
 	systems/CollisionSolverSystem.cpp
+	systems/MapChangeSystem.cpp
 	graphics/AnimatedSprite.cpp
 	graphics/Animation.cpp
 	Context.cpp

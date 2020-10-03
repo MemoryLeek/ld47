@@ -53,7 +53,8 @@ int main(int argc, char* argv[])
 		.add<Facing>()
 		;
 
-	auto mapChangeRequestQuery = ecs.query<const MapLoadRequest&>();
+	auto mapChangeRequestQuery = ecs
+		.query<MapLoadRequest>();
 
 	sf::Clock clock;
 	while (ecs.progress(clock.restart().asSeconds()))
@@ -62,12 +63,12 @@ int main(int argc, char* argv[])
 		{
 			flecs::column<MapLoadRequest> request(it, 1);
 
-			mapLoader.deleteMapEntities(ecs);
-
-			for (auto i : it)
+			for (auto row : it)
 			{
-				mapLoader.loadFromFile(request->path);
-				it.entity(i).remove<MapLoadRequest>();
+				auto path = request[row].path;
+				mapLoader.deleteMapEntities(ecs);
+				mapLoader.loadFromFile(path);
+				it.entity(row).remove<MapLoadRequest>();
 			}
 		}
 	}
