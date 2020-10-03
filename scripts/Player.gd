@@ -5,6 +5,9 @@ var FACING = "Down"
 var ACTION = "Idle"
 var attacking = false
 var velocity = Vector2(0, 0)
+var health = 100
+var damageVisualOpacity = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +16,14 @@ func _ready():
 func mix(a, b, w):
 	return a * w + b * (1 - w)
 
+func damage(value):
+	health -= value
+	damageVisualOpacity = value / 100.0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	damageVisualOpacity = damageVisualOpacity * (1 - delta) - delta
+	$Camera2D/ColorRect.color = Color(255, 0, 0, damageVisualOpacity)
 	
 	var desiredVelocity = Vector2(0, 0)
 	
@@ -40,7 +49,7 @@ func _process(delta):
 			FACING = "Down"
 			ACTION = "Walk"
 	
-	velocity = mix(desiredVelocity, velocity, delta * 20)
+	velocity = mix(desiredVelocity, velocity, delta * 15)
 	move_and_slide(velocity)
 	
 	$AnimatedSprite.play(ACTION + "_" + FACING)

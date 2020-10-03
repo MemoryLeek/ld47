@@ -1,15 +1,20 @@
-extends Node2D
+extends KinematicBody2D
 
 var RAND = RandomNumberGenerator.new()
 var FACING = "Left"
 var ACTION = "Idle"
 var player
 var charging = false
+var velocity = Vector2(0, 0)
+export var health = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	RAND.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
-	pass # Replace with function body.
+
+func mix(a, b, w):
+	return a * w + b * (1 - w)
 
 func calcSpeed():
 	if charging:
@@ -21,46 +26,55 @@ func calcSpeed():
 func _process(delta):
 	if charging:
 		var dist = (position - player.position).length()
-		if dist < 15:
+		if dist < 35:
 			charging = false
+			player.damage(40)
 			match FACING:
-				"Left": player.velocity.x -= 1000
-				"Right": player.velocity.x += 1000
-				"Up": player.velocity.y -= 1000
-				"Down": player.velocity.y += 1000
+				"Left": 
+					player.velocity.x -= 500
+					velocity.x += 1500
+				"Right": 
+					player.velocity.x += 500
+					velocity.x -= 1500
+				"Up": 
+					player.velocity.y -= 500
+					velocity.y += 1500
+				"Down": 
+					player.velocity.y += 500
+					velocity.x -= 1500
 	else:
 		var xDist = abs(position.x - player.position.x)
 		var yDist = abs(position.y - player.position.y)
 		
 		if FACING == "Right" and player.position.x > position.x and yDist < 20:
 			charging = true
-			player.velocity.x += 1000
 			ACTION = "Walk"
 			$ChargingTimer.start(0.5)
 		elif FACING == "Left" and player.position.x < position.x and yDist < 20:
 			charging = true
-			player.velocity.x -= 1000
 			ACTION = "Walk"
 			$ChargingTimer.start(0.5)
 		elif FACING == "Up" and player.position.y < position.y and xDist < 20:
 			charging = true
-			player.velocity.y -= 1000
 			ACTION = "Walk"
 			$ChargingTimer.start(0.5)
 		elif FACING == "Down" and player.position.y > position.y and xDist < 20:
 			charging = true
-			player.velocity.y += 1000
 			ACTION = "Walk"
 			$ChargingTimer.start(0.5)
+	
+	var desiredVelocity = Vector2(0, 0)
 	
 	if ACTION == "Walk":
 		var speed = calcSpeed()
 		match FACING:
-			"Left": position.x -= speed * delta
-			"Right": position.x += speed * delta
-			"Up": position.y -= speed * delta
-			"Down": position.y += speed * delta
+			"Left": desiredVelocity.x -= speed
+			"Right": desiredVelocity.x += speed
+			"Up": desiredVelocity.y -= speed
+			"Down": desiredVelocity.y += speed
 	
+	velocity = mix(desiredVelocity, velocity, delta * 15)
+	move_and_slide(velocity)
 	$AnimatedSprite.play(ACTION + "_" + FACING)
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Kitten.gd" type="Script" id=2]
@@ -94,7 +94,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Kitten" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 12.1658, 13.4063 )
+
+[node name="Kitten" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -106,5 +109,9 @@ autostart = true
 
 [node name="ChargingTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.222725, 2.33861 )
+shape = SubResource( 14 )
 [connection signal="timeout" from="ActionTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="ChargingTimer" to="." method="_on_ChargingTimer_timeout"]
