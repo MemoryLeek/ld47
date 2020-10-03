@@ -19,18 +19,39 @@ func calcSpeed():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#if ACTION == "Idle":
-	var xDist = abs(position.x - player.position.x)
-	var yDist = abs(position.y - player.position.y)
-	
-	if FACING == "Right" and player.position.x > position.x and yDist < 30:
-		charging = true
-		ACTION = "Walk"
-		$ChargingTimer.start(0.5)
-	elif FACING == "Left" and player.position.x < position.x and yDist < 30:
-		charging = true
-		ACTION = "Walk"
-		$ChargingTimer.start(0.5)
+	if charging:
+		var dist = (position - player.position).length()
+		if dist < 15:
+			charging = false
+			match FACING:
+				"Left": player.velocity.x -= 1000
+				"Right": player.velocity.x += 1000
+				"Up": player.velocity.y -= 1000
+				"Down": player.velocity.y += 1000
+	else:
+		var xDist = abs(position.x - player.position.x)
+		var yDist = abs(position.y - player.position.y)
+		
+		if FACING == "Right" and player.position.x > position.x and yDist < 20:
+			charging = true
+			player.velocity.x += 1000
+			ACTION = "Walk"
+			$ChargingTimer.start(0.5)
+		elif FACING == "Left" and player.position.x < position.x and yDist < 20:
+			charging = true
+			player.velocity.x -= 1000
+			ACTION = "Walk"
+			$ChargingTimer.start(0.5)
+		elif FACING == "Up" and player.position.y < position.y and xDist < 20:
+			charging = true
+			player.velocity.y -= 1000
+			ACTION = "Walk"
+			$ChargingTimer.start(0.5)
+		elif FACING == "Down" and player.position.y > position.y and xDist < 20:
+			charging = true
+			player.velocity.y += 1000
+			ACTION = "Walk"
+			$ChargingTimer.start(0.5)
 	
 	if ACTION == "Walk":
 		var speed = calcSpeed()
