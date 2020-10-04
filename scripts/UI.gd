@@ -14,6 +14,12 @@ signal interaction_ended
 func give_item(name : String):
 	find_node(name).visible = true
 
+func take_item(name : String):
+	find_node(name).visible = false
+
+func has_item(name : String) -> bool:
+	return find_node(name).visible
+
 func set_hearts(h : int):
 	hearts = h
 	if _heart3 != null:
@@ -37,6 +43,7 @@ func try_mark_read():
 
 func _ready():
 	set_hearts(hearts)
+	_text_engine.set_break_key_by_scancode(KEY_SPACE)
 
 func _on_TextInterfaceEngine_state_change(state : int):
 	if state == _text_engine.STATE_OUTPUT:

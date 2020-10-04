@@ -14,11 +14,11 @@ region = Rect2( 96, 160, 32, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 128, 160, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 32, 160, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 160, 32, 32 )
 
@@ -26,11 +26,12 @@ region = Rect2( 64, 160, 32, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 160, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 5 )
 region = Rect2( 16, 356, 928, 168 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
+size = 12
 font_data = ExtResource( 4 )
 
 [node name="UI" type="CanvasLayer"]
@@ -89,13 +90,13 @@ margin_bottom = 36.0
 visible = false
 margin_right = 32.0
 margin_bottom = 32.0
-texture_normal = SubResource( 4 )
+texture_normal = SubResource( 3 )
 
 [node name="Hat" type="TextureButton" parent="Icons/VBoxContainer/Inventory"]
 visible = false
 margin_right = 32.0
 margin_bottom = 32.0
-texture_normal = SubResource( 3 )
+texture_normal = SubResource( 4 )
 
 [node name="Teddy" type="TextureButton" parent="Icons/VBoxContainer/Inventory"]
 visible = false
@@ -109,7 +110,7 @@ anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 89.0
 rect_scale = Vector2( 0.25, 0.25 )
-texture = SubResource( 7 )
+texture = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -123,7 +124,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-FONT = SubResource( 6 )
+FONT = SubResource( 7 )
 PRINT_INPUT = false
 [connection signal="buff_cleared" from="TextInterfaceEngine" to="." method="_on_TextInterfaceEngine_buff_cleared"]
 [connection signal="state_change" from="TextInterfaceEngine" to="." method="_on_TextInterfaceEngine_state_change"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Gandolf.gd" type="Script" id=2]
@@ -10,6 +10,9 @@ region = Rect2( 96, 128, 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 8 )
 
+[sub_resource type="Animation" id=3]
+resource_name = "Move"
+
 [node name="Gandolf" type="StaticBody2D"]
 script = ExtResource( 2 )
 
@@ -19,3 +22,6 @@ texture = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Move = SubResource( 3 )
