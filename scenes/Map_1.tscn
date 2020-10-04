@@ -27,13 +27,20 @@ position = Vector2( -645.371, -250.225 )
 scale = Vector2( 2.6699, 2.41884 )
 polygon = PoolVector2Array( 229.736, 275.432, 397.532, 275.432, 397.532, 103.448, 385.547, 103.448, 385.359, 262.099, 241.721, 262.202, 241.721, 103.448, 397.532, 103.448, 397.532, 90.2189, 229.736, 90.2189 )
 
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 164, 348, 140, 348, 140, 304, 164, 304 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 80, 0 )
+polygon = PoolVector2Array( 164, 348, 140, 348, 140, 304, 164, 304 )
+
 [node name="Portal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 192, 130 )
 target_scene = "res://scenes/Map_2.tscn"
 activation_mode = 0
 
 [node name="Boy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 240, 72 )
+position = Vector2( 216, 68 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 192, 319.439 )
