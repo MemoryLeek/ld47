@@ -15,6 +15,7 @@ func _ready():
 	RAND.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
 	$AnimatedSprite.material = $AnimatedSprite.material.duplicate(true)
+	print("Cat ready")
 
 func mix(a, b, w):
 	return a * w + b * (1 - w)
@@ -34,6 +35,10 @@ func damage(value : float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta : float):
+	if not player:
+		print("Player is null!")
+		return
+	
 	if charging:
 		var dist = (position - player.position).length()
 		if dist < 35:
