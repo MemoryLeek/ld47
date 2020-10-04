@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/map2.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Chest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Map_3.tscn" type="PackedScene" id=5]
+
+[node name="Map 2" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 360, 60, 360, 60, 348, 72, 348, 72, 328, 72, 280, 68, 280, 68, 260, 48, 260, 48, 252, 56, 252, 56, 240, 68, 240, 68, 200, 48, 200, 48, 192, 56, 192, 56, 152, 48, 152, 48, 144, 60, 144, 60, 128, 96, 128, 96, 160, 112, 160, 112, 176, 128, 176, 128, 192, 152, 192, 152, 200, 164, 200, 164, 212, 152, 212, 152, 248, 164, 248, 164, 260, 152, 260, 152, 296, 164, 296, 164, 308, 152, 308, 152, 344, 164, 344, 164, 356, 152, 356, 152, 384, 0, 384 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 384, 364, 308, 364, 308, 352, 288, 352, 288, 332, 268, 332, 268, 236, 284, 236, 284, 260, 288, 260, 288, 284, 352, 284, 352, 260, 356, 260, 356, 248, 352, 248, 352, 244, 348, 244, 348, 240, 344, 240, 344, 236, 340, 236, 340, 220, 348, 220, 348, 216, 336, 216, 336, 164, 348, 164, 348, 160, 320, 160, 320, 148, 308, 148, 308, 128, 288, 128, 288, 140, 276, 140, 276, 160, 264, 160, 264, 168, 256, 168, 256, 192, 232, 192, 232, 200, 220, 200, 220, 212, 232, 212, 232, 248, 220, 248, 220, 260, 232, 260, 232, 296, 220, 296, 220, 308, 232, 308, 232, 344, 220, 344, 220, 356, 232, 356, 232, 384, 384, 384 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 200, 36, 152, 36, 152, 52, 140, 52, 140, 64, 160, 64, 160, 80, 204, 80, 204, 72, 216, 72, 216, 60, 200, 60 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 12, 60, 32, 60, 32, 48, 64, 48, 64, 36, 80, 36, 80, 8, 96, 8, 96, 0, 240, 0, 240, 20, 248, 20, 248, 44, 256, 44, 256, 56, 272, 56, 272, 68, 312, 68, 312, 56, 320, 56, 320, 36, 340, 36, 340, 28, 384, 28, 384, 384, 416, 384, 416, 28, 416, -32, -32, -32, -32, 384, 0, 384, 0, 48, 12, 48 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 88, 80, 108, 80, 108, 56, 96, 56, 96, 64, 88, 64 )
+
+[node name="Chest" parent="." instance=ExtResource( 4 )]
+position = Vector2( 362, 344 )
+content = "Teddy"
+
+[node name="Portal" parent="." instance=ExtResource( 3 )]
+position = Vector2( 36, 302 )
+target_scene = ExtResource( 5 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 192, 352 )
