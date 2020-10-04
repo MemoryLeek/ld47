@@ -43,7 +43,7 @@ position = Vector2( 264, 104 )
 polygon = PoolVector2Array( 32, 136, 24, 136, 24, 132, 36, 132, 36, 136 )
 
 [node name="Chest" parent="." instance=ExtResource( 3 )]
-position = Vector2( 336, 68 )
+position = Vector2( 334, 72 )
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 334, 116 )
