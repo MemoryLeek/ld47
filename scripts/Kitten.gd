@@ -11,6 +11,7 @@ export var health = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("enemies")
 	RAND.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
 	$AnimatedSprite.material = $AnimatedSprite.material.duplicate(true)

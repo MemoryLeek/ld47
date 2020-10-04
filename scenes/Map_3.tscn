@@ -51,6 +51,7 @@ position = Vector2( 334, 116 )
 
 [node name="Portal" parent="." instance=ExtResource( 4 )]
 position = Vector2( 192, 74 )
+target_scene = "res://scenes/Map_4.tscn"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 340 )

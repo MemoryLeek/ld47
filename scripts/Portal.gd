@@ -1,6 +1,10 @@
 extends Area2D
 
-export(PackedScene) var target_scene
+enum ActivationMode { MANUAL, ENEMIES_DEAD }
+
+export(String, FILE) var target_scene
+export(ActivationMode) var activation_mode = ActivationMode.ENEMIES_DEAD
+
 export(Color) var overlay_color setget set_overlay_color
 export(Vector2) var player_offset setget set_player_offset
 export(bool) var enabled setget set_enabled
@@ -28,7 +32,13 @@ func set_enabled(e : bool):
 
 func _ready():
 	assert(player != null, "Portal could not find and store reference to player")
+	assert(target_scene != "", "Portal with no target scene")
 	pause_mode = Node.PAUSE_MODE_PROCESS
+
+func _physics_process(delta):
+	if not enabled and activation_mode == ActivationMode.ENEMIES_DEAD:
+		if get_tree().get_nodes_in_group("enemies").size() == 0:
+			set_enabled(true)
 
 func _on_body_entered(body : Node):
 	if enabled and body.name == "Player":
@@ -38,5 +48,5 @@ func _on_body_entered(body : Node):
 
 func _on_animation_finished(anim_name : String):
 	if anim_name == "Transition":
-		get_tree().change_scene_to(target_scene)
+		get_tree().change_scene(target_scene)
 		get_tree().paused = false

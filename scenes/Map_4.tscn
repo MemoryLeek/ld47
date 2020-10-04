@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/map4.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Chest.tscn" type="PackedScene" id=5]
+
+[node name="Map 4" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 32, 324, 64, 324, 64, 280, 32, 280, 32, 64, 64, 64, 64, 32, 192, 32, 192, 0, 0, 0, 0, 384, 384, 384, 384, 352, 384, 0, 192, 0, 192, 32, 320, 32, 320, 64, 352, 64, 352, 280, 320, 280, 320, 324, 352, 324, 352, 352, 32, 352 )
+
+[node name="Portal" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, 98 )
+target_scene = "res://scenes/Map_1.tscn"
+enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 192, 320 )
+
+[node name="Chest" parent="." instance=ExtResource( 5 )]
+position = Vector2( 144, 152 )
+content = "Key"

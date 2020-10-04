@@ -5,6 +5,7 @@ var player
 var active = false
 
 func _ready():
+	add_to_group("enemies")
 	rand.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
 
