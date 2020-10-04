@@ -1,10 +1,14 @@
 extends CanvasLayer
+class_name UserInterface
 
 export(int, 3) var hearts = 3 setget set_hearts
 
 onready var _heart1 : TextureButton = find_node("Heart1")
 onready var _heart2 : TextureButton = find_node("Heart2")
 onready var _heart3 : TextureButton = find_node("Heart3")
+
+func give_item(name : String):
+	find_node(name).visible = true
 
 func set_hearts(h : int):
 	hearts = h

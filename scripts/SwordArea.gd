@@ -13,11 +13,8 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_SwordArea_body_entered(body):
 	if body.has_method("damage") and body.name != "Player":
 		body.damage(15)
+	if body.has_method("interact"):
+		body.interact()
