@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/map1.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Map_2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/BulletSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/SmallBullet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Boy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/BulletSpawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Boy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Map_3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/map1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/SmallBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=7]
 
-[node name="Map" type="Node2D"]
+[node name="Map_1" type="Node2D"]
 position = Vector2( -16, -12 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -31,24 +31,23 @@ position = Vector2( -645.371, -250.225 )
 scale = Vector2( 2.6699, 2.41884 )
 polygon = PoolVector2Array( 229.736, 275.432, 397.532, 275.432, 397.532, 103.448, 385.547, 103.448, 385.359, 262.099, 241.721, 262.202, 241.721, 103.448, 397.532, 103.448, 397.532, 90.2189, 229.736, 90.2189 )
 
-[node name="Portal" parent="." instance=ExtResource( 2 )]
+[node name="Portal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 192, 130 )
-target_scene = ExtResource( 4 )
+target_scene = ExtResource( 3 )
 
-[node name="Boy" parent="." instance=ExtResource( 7 )]
+[node name="Boy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 240, 72 )
 
-[node name="BulletSpawner" parent="." instance=ExtResource( 5 )]
+[node name="BulletSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 96, 336 )
 active = true
-interval = 0.2
 
-[node name="SmalBulletSpawner" parent="." instance=ExtResource( 5 )]
+[node name="SmalBulletSpawner" parent="." instance=ExtResource( 1 )]
 position = Vector2( 288, 336 )
 active = true
 interval = 0.1
 pattern = 1
-bullet_type = ExtResource( 6 )
+bullet_type = ExtResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 192, 319.439 )
