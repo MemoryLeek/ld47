@@ -6,7 +6,6 @@ var FACING = "Down"
 var ACTION = "Idle"
 var attacking = false
 var velocity = Vector2(0, 0)
-var health = 100
 var damageVisualOpacity = 0
 export(Color) var camera_overlay_color setget set_camera_overlay_color
 
@@ -27,8 +26,10 @@ func mix(a, b, w):
 	return a * w + b * (1 - w)
 
 func damage(value):
-	health -= value
-	damageVisualOpacity = value / 100.0
+	_ui.hearts -= value
+	damageVisualOpacity = value * 0.4
+	if _ui.hearts <= 0:
+		$DeathAnimationPlayer.play("Death")
 	
 func set_camera_overlay_color(color : Color):
 	$Camera2D/CanvasLayer/ColorRect.color.a = 0
@@ -78,3 +79,11 @@ func _process(delta):
 func _on_animation_finished():
 	if $AnimatedSprite.animation.begins_with("Attack"):
 		attacking = false
+
+func _pause_world():
+	get_tree().paused = true
+
+func _on_DeathAnimationPlayer_animation_finished(anim_name):
+	get_tree().reload_current_scene()
+	_ui.set_hearts(3)
+	get_tree().paused = false

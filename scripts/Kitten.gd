@@ -37,7 +37,7 @@ func _process(delta : float):
 		var dist = (position - player.position).length()
 		if dist < 35:
 			charging = false
-			player.damage(40)
+			player.damage(1)
 			match FACING:
 				"Left": 
 					player.velocity.x -= 500

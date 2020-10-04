@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -185,6 +185,36 @@ extents = Vector2( 8, 12.5 )
 [sub_resource type="CircleShape2D" id=31]
 radius = 8.58089
 
+[sub_resource type="Animation" id=32]
+resource_name = "Death"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D/CanvasLayer/ProperColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_pause_world"
+} ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -223,7 +253,7 @@ margin_left = -420.0
 margin_top = -249.0
 margin_right = 445.0
 margin_bottom = 255.0
-color = Color( 1, 1, 1, 0 )
+color = Color( 1, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -250,5 +280,10 @@ disabled = true
 position = Vector2( 0.297302, 17.8381 )
 shape = SubResource( 31 )
 disabled = true
+
+[node name="DeathAnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/Death = SubResource( 32 )
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="SwordArea" to="SwordArea" method="_on_SwordArea_body_entered"]
+[connection signal="animation_finished" from="DeathAnimationPlayer" to="." method="_on_DeathAnimationPlayer_animation_finished"]
