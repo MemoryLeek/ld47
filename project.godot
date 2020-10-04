@@ -24,6 +24,10 @@ config/name="LD47"
 run/main_scene="res://scenes/Map.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+UI="*res://scenes/UI.tscn"
+
 [display]
 
 window/size/width=240
