@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/map3.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Chest.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Ghost.tscn" type="PackedScene" id=6]
 
 [node name="Map 3" type="Node2D"]
 
@@ -53,3 +54,9 @@ position = Vector2( 192, 74 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 340 )
+
+[node name="Ghost" parent="." instance=ExtResource( 6 )]
+position = Vector2( 124.488, 283.752 )
+
+[node name="Ghost2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 188.744, 107.993 )
