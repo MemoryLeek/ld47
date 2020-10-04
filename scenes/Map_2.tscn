@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/map2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Chest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Blobby.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Gandolf.tscn" type="PackedScene" id=6]
 
 [node name="Map 2" type="Node2D"]
@@ -40,6 +41,18 @@ enabled = true
 
 [node name="Gandolf" parent="." instance=ExtResource( 6 )]
 position = Vector2( 368, 164 )
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2( 140, -64 )
+
+[node name="Blobby" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 196, 172 )
+
+[node name="Blobby2" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( -116, 292 )
+
+[node name="Blobby3" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( -16, 180 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 192, 352 )

@@ -93,7 +93,7 @@ tracks/1/keys = {
 radius = 90.0
 height = 50.0
 
-[sub_resource type="CircleShape2D" id=10]
+[sub_resource type="CircleShape2D" id=15]
 
 [node name="Ghost" type="KinematicBody2D"]
 collision_layer = 1024
@@ -125,7 +125,7 @@ shape = SubResource( 9 )
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource( 10 )
+shape = SubResource( 15 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_AggroArea_body_entered"]
 [connection signal="body_exited" from="AggroArea" to="." method="_on_AggroArea_body_exited"]
