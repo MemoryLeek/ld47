@@ -1,10 +1,10 @@
 extends Node2D
 
-enum SpawnPattern { CIRCULAR }
+enum SpawnPattern { CIRCULAR_45, CIRCULAR_20 }
 
 export var active = false setget set_active, get_active
 export var interval = 0.2 setget set_interval
-export(SpawnPattern) var pattern = SpawnPattern.CIRCULAR
+export(SpawnPattern) var pattern = SpawnPattern.CIRCULAR_45
 export(PackedScene) var bullet_type
 
 var _direction = Vector2(0, 1)
@@ -22,9 +22,12 @@ func _on_Timer_timeout():
 
 func _initialize_bullet(bullet):
 	match pattern:
-		SpawnPattern.CIRCULAR:
+		SpawnPattern.CIRCULAR_45:
 			bullet.velocity = _direction * 1.5
 			_direction = _direction.rotated(deg2rad(45)).normalized()
+		SpawnPattern.CIRCULAR_20:
+			bullet.velocity = _direction * 1.5
+			_direction = _direction.rotated(deg2rad(20)).normalized()
 
 func set_active(a: bool):
 	active = a
