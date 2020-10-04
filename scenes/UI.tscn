@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/UI.gd" type="Script" id=2]
+[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=3]
+[ext_resource path="res://assets/Cave-Story.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/ui.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -23,65 +26,104 @@ region = Rect2( 64, 160, 32, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 0, 160, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 16, 356, 928, 168 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 4 )
+
 [node name="UI" type="CanvasLayer"]
-offset = Vector2( 4, 4 )
-scale = Vector2( 0.5, 0.5 )
-transform = Transform2D( 0.5, 0, 0, 0.5, 4, 4 )
 script = ExtResource( 2 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
+[node name="Icons" type="Control" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 44.0
+margin_bottom = 44.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Icons"]
+margin_right = 104.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Hearts" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Hearts" type="HBoxContainer" parent="Icons/VBoxContainer"]
 margin_right = 104.0
 margin_bottom = 32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Heart1" type="TextureButton" parent="VBoxContainer/Hearts"]
+[node name="Heart1" type="TextureButton" parent="Icons/VBoxContainer/Hearts"]
 margin_right = 32.0
 margin_bottom = 32.0
 texture_normal = SubResource( 1 )
 texture_disabled = SubResource( 2 )
 
-[node name="Heart2" type="TextureButton" parent="VBoxContainer/Hearts"]
+[node name="Heart2" type="TextureButton" parent="Icons/VBoxContainer/Hearts"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
 texture_normal = SubResource( 1 )
 texture_disabled = SubResource( 2 )
 
-[node name="Heart3" type="TextureButton" parent="VBoxContainer/Hearts"]
+[node name="Heart3" type="TextureButton" parent="Icons/VBoxContainer/Hearts"]
 margin_left = 72.0
 margin_right = 104.0
 margin_bottom = 32.0
 texture_normal = SubResource( 1 )
 texture_disabled = SubResource( 2 )
 
-[node name="Inventory" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Inventory" type="HBoxContainer" parent="Icons/VBoxContainer"]
 margin_top = 36.0
 margin_right = 104.0
 margin_bottom = 36.0
 
-[node name="Key" type="TextureButton" parent="VBoxContainer/Inventory"]
+[node name="Key" type="TextureButton" parent="Icons/VBoxContainer/Inventory"]
 visible = false
 margin_right = 32.0
 margin_bottom = 32.0
 texture_normal = SubResource( 4 )
 
-[node name="Hat" type="TextureButton" parent="VBoxContainer/Inventory"]
+[node name="Hat" type="TextureButton" parent="Icons/VBoxContainer/Inventory"]
 visible = false
 margin_right = 32.0
 margin_bottom = 32.0
 texture_normal = SubResource( 3 )
 
-[node name="Teddy" type="TextureButton" parent="VBoxContainer/Inventory"]
+[node name="Teddy" type="TextureButton" parent="Icons/VBoxContainer/Inventory"]
 visible = false
 margin_right = 32.0
 margin_bottom = 32.0
 texture_normal = SubResource( 5 )
+
+[node name="TextBackground" type="TextureRect" parent="."]
+visible = false
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 89.0
+rect_scale = Vector2( 0.25, 0.25 )
+texture = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextInterfaceEngine" type="ReferenceRect" parent="."]
+margin_left = 10.0
+margin_top = 95.0
+margin_right = 230.0
+margin_bottom = 125.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+FONT = SubResource( 6 )
+PRINT_INPUT = false
+[connection signal="buff_cleared" from="TextInterfaceEngine" to="." method="_on_TextInterfaceEngine_buff_cleared"]
+[connection signal="state_change" from="TextInterfaceEngine" to="." method="_on_TextInterfaceEngine_state_change"]

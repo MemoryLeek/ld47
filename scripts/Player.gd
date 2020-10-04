@@ -10,6 +10,8 @@ var health = 100
 var damageVisualOpacity = 0
 export(Color) var camera_overlay_color setget set_camera_overlay_color
 
+onready var _ui : UserInterface = get_node("/root/UI")
+
 func swordShapeSetState():
 	$SwordArea/SwordShapeDown.disabled = not (attacking and FACING == "Down")
 	$SwordArea/SwordShapeUp.disabled = not (attacking and FACING == "Up")
@@ -39,7 +41,12 @@ func _process(delta):
 	
 	var desiredVelocity = Vector2(0, 0)
 	
-	if Input.is_action_pressed("attack"):
+	if _ui.is_interacting():
+		ACTION = "Idle"
+		attacking = false
+		if Input.is_action_just_pressed("attack"):
+			_ui.try_mark_read()
+	elif Input.is_action_pressed("attack"):
 		ACTION = "Attack"
 		attacking = true
 	elif not attacking:

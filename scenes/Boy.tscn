@@ -1,28 +1,20 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
-[ext_resource path="res://scenes/BulletSpawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Boy.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.05025, 11.7299 )
+extents = Vector2( 8, 11.7299 )
 
 [node name="Boy" type="KinematicBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 15.6176, 20.0823 )
-shape = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -0.264862, 0 )
 texture = ExtResource( 1 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 128, 32, 32 )
 
-[node name="BulletSpawner" parent="." instance=ExtResource( 2 )]
-position = Vector2( -2.37818, 20.7379 )
-active = true
-
-[node name="BulletSpawner2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 33.2578, 21.0719 )
-active = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
