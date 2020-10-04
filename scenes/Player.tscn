@@ -204,6 +204,7 @@ limit_right = 384
 limit_bottom = 384
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
 visible = false
