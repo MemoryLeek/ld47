@@ -42,6 +42,10 @@ window/size/test_width=960
 window/size/test_height=540
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "GodotTIE" )
+
 [importer_defaults]
 
 texture={
