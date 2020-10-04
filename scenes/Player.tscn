@@ -263,22 +263,26 @@ __meta__ = {
 script = ExtResource( 3 )
 
 [node name="SwordShapeRight" type="CollisionShape2D" parent="SwordArea"]
-position = Vector2( 11.5948, 2.22976 )
+position = Vector2( 12, 2 )
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 31 )
 disabled = true
 
 [node name="SwordShapeLeft" type="CollisionShape2D" parent="SwordArea"]
-position = Vector2( -11.7434, 2.22976 )
+position = Vector2( -12, 2 )
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 31 )
 disabled = true
 
 [node name="SwordShapeUp" type="CollisionShape2D" parent="SwordArea"]
-position = Vector2( -0.148651, -14.2705 )
+position = Vector2( 0, -10 )
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 31 )
 disabled = true
 
 [node name="SwordShapeDown" type="CollisionShape2D" parent="SwordArea"]
-position = Vector2( 0.297302, 17.8381 )
+position = Vector2( 0, 16 )
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 31 )
 disabled = true
 
