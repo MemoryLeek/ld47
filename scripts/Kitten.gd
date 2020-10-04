@@ -6,12 +6,14 @@ var ACTION = "Idle"
 var player
 var charging = false
 var velocity = Vector2(0, 0)
+export var highlight = 0.0 setget set_highlight
 export var health = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	RAND.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
+	$AnimatedSprite.material = $AnimatedSprite.material.duplicate(true)
 
 func mix(a, b, w):
 	return a * w + b * (1 - w)
@@ -24,6 +26,7 @@ func calcSpeed():
 
 func damage(value : float):
 	self.health -= value
+	$AnimationPlayer.play("OnHit")
 	
 	if health < 0:
 		queue_free()
@@ -83,6 +86,9 @@ func _process(delta : float):
 	move_and_slide(velocity)
 	$AnimatedSprite.play(ACTION + "_" + FACING)
 
+func set_highlight(value : float):
+	if $AnimatedSprite != null:
+		$AnimatedSprite.material.set_shader_param("highlight", value)
 
 func _on_Timer_timeout():
 	if charging:
