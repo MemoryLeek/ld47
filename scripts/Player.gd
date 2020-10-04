@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 const SPEED = 100
 var FACING = "Down"
@@ -7,6 +8,7 @@ var attacking = false
 var velocity = Vector2(0, 0)
 var health = 100
 var damageVisualOpacity = 0
+export(Color) var camera_overlay_color setget set_camera_overlay_color
 
 func swordShapeSetState():
 	$SwordArea/SwordShapeDown.disabled = not (attacking and FACING == "Down")
@@ -16,7 +18,8 @@ func swordShapeSetState():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Camera2D/ColorRect.visible = true
+	$Camera2D/CanvasLayer/ColorRect.visible = true
+	$Camera2D/CanvasLayer/ProperColorRect.visible = true
 
 func mix(a, b, w):
 	return a * w + b * (1 - w)
@@ -24,11 +27,15 @@ func mix(a, b, w):
 func damage(value):
 	health -= value
 	damageVisualOpacity = value / 100.0
+	
+func set_camera_overlay_color(color : Color):
+	$Camera2D/CanvasLayer/ColorRect.color.a = 0
+	$Camera2D/CanvasLayer/ProperColorRect.color = color
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	damageVisualOpacity = damageVisualOpacity * (1 - delta) - delta
-	$Camera2D/ColorRect.color = Color(255, 0, 0, damageVisualOpacity)
+	$Camera2D/CanvasLayer/ColorRect.color = Color(255, 0, 0, damageVisualOpacity)
 	
 	var desiredVelocity = Vector2(0, 0)
 	
