@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/SwordArea.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -181,6 +182,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 8, 12.5 )
 
+[sub_resource type="CircleShape2D" id=31]
+radius = 8.58089
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -209,4 +213,28 @@ color = Color( 1, 0.054902, 0.00784314, 0.47451 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SwordArea" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="SwordShapeRight" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2( 11.5948, 2.22976 )
+shape = SubResource( 31 )
+disabled = true
+
+[node name="SwordShapeLeft" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2( -11.7434, 2.22976 )
+shape = SubResource( 31 )
+disabled = true
+
+[node name="SwordShapeUp" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2( -0.148651, -14.2705 )
+shape = SubResource( 31 )
+disabled = true
+
+[node name="SwordShapeDown" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2( 0.297302, 17.8381 )
+shape = SubResource( 31 )
+disabled = true
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="SwordArea" to="SwordArea" method="_on_SwordArea_body_entered"]

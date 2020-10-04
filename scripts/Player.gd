@@ -8,6 +8,11 @@ var velocity = Vector2(0, 0)
 var health = 100
 var damageVisualOpacity = 0
 
+func swordShapeSetState():
+	$SwordArea/SwordShapeDown.disabled = not (attacking and FACING == "Down")
+	$SwordArea/SwordShapeUp.disabled = not (attacking and FACING == "Up")
+	$SwordArea/SwordShapeLeft.disabled = not (attacking and FACING == "Left")
+	$SwordArea/SwordShapeRight.disabled = not (attacking and FACING == "Right")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,6 +57,7 @@ func _process(delta):
 	velocity = mix(desiredVelocity, velocity, delta * 15)
 	move_and_slide(velocity)
 	
+	swordShapeSetState()
 	$AnimatedSprite.play(ACTION + "_" + FACING)
 
 

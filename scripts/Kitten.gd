@@ -22,8 +22,14 @@ func calcSpeed():
 	else:
 		return 30
 
+func damage(value : float):
+	self.health -= value
+	
+	if health < 0:
+		queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta : float):
 	if charging:
 		var dist = (position - player.position).length()
 		if dist < 35:
