@@ -104,7 +104,7 @@ extents = Vector2( 12.1658, 13.4063 )
 
 [sub_resource type="Animation" id=17]
 resource_name = "OnHit"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:highlight")
 tracks/0/interp = 1
@@ -112,8 +112,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 2, 1 ),
 "update": 0,
 "values": [ 1.0, 0.0 ]
 }
