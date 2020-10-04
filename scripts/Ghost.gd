@@ -13,7 +13,7 @@ func _process(delta):
 		return
 	
 	var normal = (player.position - position).normalized()
-	move_and_slide(normal * 15)
+	move_and_slide(normal * 20)
 
 func damage(value):
 	$AnimationPlayer.play("Death")
@@ -40,3 +40,8 @@ func _on_AggroArea_body_exited(body):
 	if body.name == "Player":
 		active = false
 		$AnimatedSprite.stop()
+
+
+func _on_DamageArea_body_entered(body):
+	if body.name == "Player":
+		player.damage(1)
