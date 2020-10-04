@@ -9,6 +9,8 @@ onready var _heart3 : TextureButton = find_node("Heart3")
 
 onready var _text_engine = find_node("TextInterfaceEngine")
 
+signal interaction_ended
+
 func give_item(name : String):
 	find_node(name).visible = true
 
@@ -31,6 +33,7 @@ func try_mark_read():
 	if $TextBackground.visible and _text_engine._state == _text_engine.STATE_WAITING:
 		$TextBackground.visible = false
 		_text_engine.reset()
+		emit_signal("interaction_ended")
 
 func _ready():
 	set_hearts(hearts)

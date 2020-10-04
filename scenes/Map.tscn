@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/Boy.tscn" type="PackedScene" id=7]
 
 [node name="Map" type="Node2D"]
+position = Vector2( -16, -12 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -31,11 +32,11 @@ scale = Vector2( 2.6699, 2.41884 )
 polygon = PoolVector2Array( 229.736, 275.432, 397.532, 275.432, 397.532, 103.448, 385.547, 103.448, 385.359, 262.099, 241.721, 262.202, 241.721, 103.448, 397.532, 103.448, 397.532, 90.2189, 229.736, 90.2189 )
 
 [node name="Portal" parent="." instance=ExtResource( 2 )]
-position = Vector2( 192, 128 )
+position = Vector2( 192, 130 )
 target_scene = ExtResource( 4 )
 
 [node name="Boy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 260, 276 )
+position = Vector2( 240, 72 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 192, 319.439 )
