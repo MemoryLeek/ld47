@@ -12,10 +12,11 @@ func _process(delta):
 	if active == false:
 		return
 	
-	
-	
 	var normal = (player.position - position).normalized()
 	move_and_slide(normal * 15)
+
+func damage(value):
+	$AnimationPlayer.play("Death")
 
 func _on_Timer_timeout():
 	if active == false:

@@ -260,6 +260,7 @@ __meta__ = {
 }
 
 [node name="SwordArea" type="Area2D" parent="."]
+collision_layer = 1025
 script = ExtResource( 3 )
 
 [node name="SwordShapeRight" type="CollisionShape2D" parent="SwordArea"]
