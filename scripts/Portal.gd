@@ -1,6 +1,6 @@
 extends Area2D
 
-enum ActivationMode { MANUAL, ENEMIES_DEAD, INVENTORY }
+enum ActivationMode { MANUAL, ENEMIES_DEAD, ENEMIES_DEAD_AND_INVENTORY }
 
 export(String, FILE) var target_scene
 export(ActivationMode) var activation_mode = ActivationMode.ENEMIES_DEAD
@@ -44,7 +44,7 @@ func _physics_process(delta):
 	if not enabled:
 		if activation_mode == ActivationMode.ENEMIES_DEAD and get_tree().get_nodes_in_group("enemies").size() == 0:
 			set_enabled(true)
-		if activation_mode == ActivationMode.INVENTORY and _ui.has_item(inventory_required):
+		if activation_mode == ActivationMode.ENEMIES_DEAD_AND_INVENTORY and _ui.has_item(inventory_required) and get_tree().get_nodes_in_group("enemies").size() == 0:
 			set_enabled(true)
 
 func _on_body_entered(body : Node):

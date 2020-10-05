@@ -17,7 +17,7 @@ func damage(value : float):
 	$AnimationPlayer.play("OnHit")
 	$BulletSpawner/AnimationPlayer.seek(0, true)
 	if _health <= 0:
-		get_parent().find_node("Chest").visible = true
+		get_parent().find_node("Chest").locked = false
 		queue_free()
 	else:
 		_respawn_kittens()
