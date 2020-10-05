@@ -6,6 +6,8 @@ var _health = 3 * 15
 var _kitten_scene = preload("res://scenes/Kitten.tscn")
 var _kitten_positions = []
 
+onready var _ui : UserInterface = get_node("/root/UI")
+
 func damage(value : float):
 	if get_tree().get_nodes_in_group("kittens").size() > 0:
 		return # No damage while kittens are alive
@@ -27,7 +29,7 @@ func _ready():
 	add_to_group("enemies")
 	# This is needed for the spawner nowadays for it to work for some reason
 	$BulletSpawner.active = false
-	$BulletSpawner.active = false
+	$BulletSpawner.interval = max(0.2, 0.8 / (_ui.iteration + 1));
 	$BulletSpawner/AnimationPlayer.play("Init")
 	
 	$Sprite.material = $Sprite.material.duplicate(true)
