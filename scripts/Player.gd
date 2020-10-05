@@ -35,6 +35,7 @@ func damage(value):
 		damageVisualOpacity = value * 0.4
 		$OnHitSound.play()
 		if _ui.hearts <= 0:
+			_ui.deaths += 1
 			$DeathAnimationPlayer.play("Death")
 	
 func set_camera_overlay_color(color : Color):

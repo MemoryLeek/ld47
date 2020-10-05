@@ -3,6 +3,7 @@ class_name UserInterface
 
 export(int, 3) var hearts = 3 setget set_hearts
 var iteration = 0
+var deaths = 0
 
 onready var _heart1 : TextureButton = find_node("Heart1")
 onready var _heart2 : TextureButton = find_node("Heart2")
@@ -43,6 +44,13 @@ func try_mark_read():
 		_text_engine.reset()
 		emit_signal("interaction_ended")
 
+func show_stats():
+	var t = $StatsBackground/CenterContainer/Stats.text
+	t = t.replace("{x}", str(deaths))
+	t = t.replace("{y}", str(iteration))
+	$StatsBackground/CenterContainer/Stats.text = t
+	$AnimationPlayer.play("FadeInStats")
+
 func _ready():
 	set_hearts(hearts)
 	_text_engine.set_break_key_by_scancode(KEY_SPACE)
@@ -50,7 +58,6 @@ func _ready():
 func _on_TextInterfaceEngine_state_change(state : int):
 	if state == _text_engine.STATE_OUTPUT:
 		$TextBackground.visible = true
-
 
 func _on_TextInterfaceEngine_buff_cleared():
 	$TextBackground.visible = false

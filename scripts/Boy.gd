@@ -55,6 +55,8 @@ func _play_has_teddy_interaction():
 	_ui._text_engine.set_state(_ui._text_engine.STATE_OUTPUT)
 
 func _play_final_interaction():
+	var s = _ui.connect("interaction_ended", _ui, "show_stats")
+	assert(s == OK)
 	_ui._text_engine.buff_text("BOY: ")
 	_ui._text_engine.buff_text("*sniff*\n", 0.1)
 	_ui._text_engine.buff_silence(0.5)
