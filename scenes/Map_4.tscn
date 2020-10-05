@@ -27,6 +27,7 @@ centered = false
 position = Vector2( 192, 106 )
 target_scene = "res://scenes/Map_1.tscn"
 activation_mode = 2
+increases_iteration = true
 
 [node name="Chest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 192, 84 )

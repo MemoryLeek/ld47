@@ -9,6 +9,7 @@ export(String, "Key", "Hat", "Teddy") var inventory_required = "Key"
 export(Color) var overlay_color setget set_overlay_color
 export(Vector2) var player_offset setget set_player_offset
 export(bool) var enabled setget set_enabled
+export(bool) var increases_iteration = false
 
 onready var player : Player = get_tree().current_scene.find_node("Player")
 onready var _ui : UserInterface = get_node("/root/UI")
@@ -46,7 +47,9 @@ func _physics_process(delta):
 
 func _on_body_entered(body : Node):
 	if enabled and body.name == "Player":
-		body.pause_mode
+		if increases_iteration:
+			_ui.iteration += 1
+			print("Iteration increased to " + str(_ui.iteration))
 		get_tree().paused = true
 		$AnimationPlayer.play("Transition")
 

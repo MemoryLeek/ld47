@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name UserInterface
 
 export(int, 3) var hearts = 3 setget set_hearts
+var iteration = 0
 
 onready var _heart1 : TextureButton = find_node("Heart1")
 onready var _heart2 : TextureButton = find_node("Heart2")
