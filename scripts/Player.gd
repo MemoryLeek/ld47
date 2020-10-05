@@ -38,8 +38,9 @@ func damage(value):
 			$DeathAnimationPlayer.play("Death")
 	
 func set_camera_overlay_color(color : Color):
-	$Camera2D/CanvasLayer/ColorRect.color.a = 0
-	$Camera2D/CanvasLayer/ProperColorRect.color = color
+	if $Camera2D/CanvasLayer/ColorRect != null:
+		$Camera2D/CanvasLayer/ColorRect.color.a = 0
+		$Camera2D/CanvasLayer/ProperColorRect.color = color
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
