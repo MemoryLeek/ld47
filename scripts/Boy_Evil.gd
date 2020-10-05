@@ -13,8 +13,8 @@ var originalPos
 var _normal_scene = load("res://scenes/Boy.tscn")
 
 func damage(amount : int):
-	$Timer.start()
 	if vulnerable:
+		$Timer.start()
 		vulnerable = false
 		$OnTakeDamage.play()
 		$DamageAnimation.play("OnHit")
