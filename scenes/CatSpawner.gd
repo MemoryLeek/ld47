@@ -19,5 +19,5 @@ func _ready():
 
 func _on_Timer_timeout():
 	var kitten = kittenScene.instance()
-	kitten.position = position
 	get_tree().current_scene.add_child(kitten)
+	kitten.global_position = to_global(position)

@@ -8,6 +8,7 @@ var aggro = false
 var originalPos
 
 func _ready():
+	add_to_group("enemies")
 	originalPos = position
 	rand.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")

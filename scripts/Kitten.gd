@@ -9,13 +9,17 @@ var velocity = Vector2(0, 0)
 export var highlight = 0.0 setget set_highlight
 export var health = 25
 
+func _get_random() -> int:
+	randomize()
+	return randi()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("enemies")
-	RAND.seed = self.get_index()
+	add_to_group("kittens")
+	RAND.seed = _get_random()
 	player = get_tree().current_scene.find_node("Player")
 	$AnimatedSprite.material = $AnimatedSprite.material.duplicate(true)
-	print("Cat ready")
 
 func mix(a, b, w):
 	return a * w + b * (1 - w)

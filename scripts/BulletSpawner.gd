@@ -1,6 +1,6 @@
 extends Node2D
 
-enum SpawnPattern { CIRCULAR_45, CIRCULAR_20, WALL_1 }
+enum SpawnPattern { CIRCULAR_45, CIRCULAR_20, WALL_1, WALL_SLOW }
 
 export var active = false setget set_active, get_active
 export var interval = 0.2 setget set_interval
@@ -34,11 +34,16 @@ func _initialize_bullet(bullet):
 			bullet.position += _offset
 			_offset *= 1.1
 			_offset.x = -fmod(_offset.x, 100)
+		SpawnPattern.WALL_SLOW:
+			bullet.velocity = Vector2(0, 3)
+			bullet.position += _offset
+			_offset *= 1.1
+			_offset.x = -fmod(_offset.x, 100)
 
 func set_active(a: bool):
 	if active == a:
 		return
-	
+
 	active = a
 	if active:
 		$Timer.start(interval)
