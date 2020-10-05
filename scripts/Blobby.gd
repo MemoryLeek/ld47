@@ -3,8 +3,14 @@ extends KinematicBody2D
 onready var _ray : RayCast2D = $RayCast2D
 onready var _player : Player = get_tree().current_scene.find_node("Player")
 
+var _health = 2 * 15
+
 func damage(amount : int):
-	$AnimationPlayer.play("Death")
+	_health -= amount
+	if _health <= 0:
+		$AnimationPlayer.play("Death")
+	else:
+		$AnimationPlayer.play("Hit")
 
 func _ready():
 	var animation_clone = $AnimationPlayer.get_animation("Attack").duplicate(true)
@@ -13,7 +19,7 @@ func _ready():
 
 func _physics_process(delta):
 	var animation = $AnimationPlayer.current_animation
-	if animation == "Attack" or animation == "Death":
+	if animation == "Attack" or animation == "Death" or animation == "Hit":
 		return
 
 	_ray.cast_to = to_local(_player.global_position)
