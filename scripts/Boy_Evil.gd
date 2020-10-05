@@ -4,19 +4,23 @@ onready var _ui : UserInterface = get_node("/root/UI")
 var rand = RandomNumberGenerator.new()
 var player
 var aggro = false
-var _health = 3 * 15
+var _health = 5 * 15
+var vulnerable = true
 
 var originalPos
 
 var _normal_scene = load("res://scenes/Boy.tscn")
 
 func damage(amount : int):
-	$OnTakeDamage.play()
-	$DamageAnimation.play("OnHit")
-	_health -= amount
-	print(_health)
-	if _health <= 0:
-		_go_nice()
+	$Timer.start()
+	if vulnerable:
+		vulnerable = false
+		$OnTakeDamage.play()
+		$DamageAnimation.play("OnHit")
+		_health -= amount
+		print(_health)
+		if _health <= 0:
+			_go_nice()
 
 func _ready():
 	add_to_group("enemies")
@@ -48,3 +52,7 @@ func _go_nice():
 	nice.exhausted = true
 	nice.position = position
 	queue_free()
+
+
+func _on_Timer_timeout():
+	vulnerable = true
