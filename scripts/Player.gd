@@ -32,6 +32,7 @@ func damage(value):
 		vulnerable = false
 		_ui.hearts -= value
 		damageVisualOpacity = value * 0.4
+		$OnHitSound.play()
 		if _ui.hearts <= 0:
 			$DeathAnimationPlayer.play("Death")
 	

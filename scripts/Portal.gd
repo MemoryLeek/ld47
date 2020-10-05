@@ -54,6 +54,7 @@ func _on_body_entered(body : Node):
 			print("Iteration increased to " + str(_ui.iteration))
 		get_tree().paused = true
 		$AnimationPlayer.play("Transition")
+		$ActivationSound.play()
 
 func _on_animation_finished(anim_name : String):
 	if anim_name == "Transition":

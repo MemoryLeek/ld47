@@ -12,6 +12,7 @@ func damage(value : float):
 	if get_tree().get_nodes_in_group("kittens").size() > 0:
 		return # No damage while kittens are alive
 	
+	$OnTakeDamage.play()
 	self._health -= value
 	$AnimationPlayer.play("OnHit")
 	$BulletSpawner/AnimationPlayer.seek(0, true)

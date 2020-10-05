@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Ghost.gd" type="Script" id=2]
+[ext_resource path="res://assets/enemy_takes_damage.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.6864, 15.9347 )
@@ -93,7 +94,7 @@ tracks/1/keys = {
 radius = 90.0
 height = 50.0
 
-[sub_resource type="CircleShape2D" id=15]
+[sub_resource type="CircleShape2D" id=10]
 
 [node name="Ghost" type="KinematicBody2D"]
 collision_layer = 1024
@@ -125,7 +126,10 @@ shape = SubResource( 9 )
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource( 15 )
+shape = SubResource( 10 )
+
+[node name="OnTakeDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_AggroArea_body_entered"]
 [connection signal="body_exited" from="AggroArea" to="." method="_on_AggroArea_body_exited"]

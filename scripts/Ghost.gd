@@ -17,6 +17,7 @@ func _process(delta):
 	move_and_slide(normal * 20)
 
 func damage(value):
+	$OnTakeDamage.play()
 	$AnimationPlayer.play("Death")
 
 func _on_Timer_timeout():

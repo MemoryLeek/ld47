@@ -22,6 +22,7 @@ func _on_Timer_timeout():
 	add_child(bullet)
 
 func _initialize_bullet(bullet):
+	$OnBulletSpawned.play()
 	match pattern:
 		SpawnPattern.CIRCULAR_45:
 			bullet.velocity = _direction * 1.5

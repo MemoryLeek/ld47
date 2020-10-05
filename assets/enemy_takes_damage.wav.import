@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy_takes_damage.wav-d2b44ccae007d4b208a20548566fdfab.sample"
+
+[deps]
+
+source_file="res://assets/enemy_takes_damage.wav"
+dest_files=[ "res://.import/enemy_takes_damage.wav-d2b44ccae007d4b208a20548566fdfab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

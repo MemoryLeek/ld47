@@ -6,6 +6,7 @@ onready var _player : Player = get_tree().current_scene.find_node("Player")
 var _health = 2 * 15
 
 func damage(amount : int):
+	$OnTakeDamage.play()
 	_health -= amount
 	if _health <= 0:
 		$AnimationPlayer.play("Death")

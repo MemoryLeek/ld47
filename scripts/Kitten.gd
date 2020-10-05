@@ -33,6 +33,7 @@ func calcSpeed():
 func damage(value : float):
 	self.health -= value
 	$AnimationPlayer.play("OnHit")
+	$OnTakeDamage.play()
 	
 	if health < 0:
 		queue_free()
