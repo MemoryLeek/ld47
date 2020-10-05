@@ -13,6 +13,7 @@ onready var _text_engine = find_node("TextInterfaceEngine")
 signal interaction_ended
 
 func give_item(name : String):
+	$OnPickupSound.play()
 	find_node(name).visible = true
 
 func take_item(name : String):
