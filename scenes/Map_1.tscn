@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/map1.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scenes/Boy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/map1.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=7]
+
+[node name="Map 1" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 0, 136, 64, 136, 64, 48, 128, 48, 128, 24, 160, 24, 160, 48, 224, 48, 224, 24, 256, 24, 256, 48, 320, 48, 320, 136, 384, 136, 384, 0 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 20, 160, 20, 192, 0, 192, 0, 232, 16, 232, 16, 264, 156, 264, 156, 224, 144, 224, 144, 192, 92, 192, 92, 160 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 292, 160, 292, 192, 240, 192, 240, 224, 228, 224, 228, 264, 368, 264, 368, 248, 384, 248, 384, 192, 364, 192, 364, 160 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -645.371, -250.225 )
+scale = Vector2( 2.6699, 2.41884 )
+polygon = PoolVector2Array( 229.736, 275.432, 397.532, 275.432, 397.532, 103.448, 385.547, 103.448, 385.359, 262.099, 241.721, 262.202, 241.721, 103.448, 397.532, 103.448, 397.532, 90.2189, 229.736, 90.2189 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 164, 348, 140, 348, 140, 304, 164, 304 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 80, 0 )
+polygon = PoolVector2Array( 164, 348, 140, 348, 140, 304, 164, 304 )
+
+[node name="Portal" parent="." instance=ExtResource( 7 )]
+position = Vector2( 192, 130 )
+target_scene = "res://scenes/Map_2.tscn"
+activation_mode = 0
+
+[node name="Boy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 192, 76 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 192, 319.439 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 1 )
+autoplay = true

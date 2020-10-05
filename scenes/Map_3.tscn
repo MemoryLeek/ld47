@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/map3.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Chest.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Ghost.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/map2.ogg" type="AudioStream" id=7]
+
+[node name="Map 3" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 256, 304, 216, 304, 216, 288, 208, 288, 208, 272, 216, 272, 216, 264, 212, 264, 212, 252, 220, 252, 220, 232, 164, 232, 164, 248, 176, 248, 176, 260, 172, 260, 172, 272, 168, 272, 168, 284, 172, 284, 172, 296, 164, 296, 164, 304, 16, 304, 16, 116, 0, 116, 0, 384, 384, 384, 384, 260, 368, 260, 368, 304, 320, 304, 320, 368, 256, 368 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 248, 216, 308, 216, 308, 252, 324, 252, 324, 296, 356, 296, 356, 252, 384, 252, 384, 0, 0, 0, 0, 116, 140, 116, 140, 28, 244, 28, 244, 116, 300, 116, 300, 28, 368, 28, 368, 180, 248, 180 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 84, 180, 84, 248, 140, 248, 140, 184, 164, 184, 164, 200, 220, 200, 220, 184, 248, 184, 248, 168, 236, 168, 236, 160, 220, 160, 220, 152, 216, 152, 216, 148, 212, 148, 212, 140, 208, 140, 208, 136, 208, 136, 204, 136, 204, 132, 184, 132, 184, 136, 180, 136, 180, 144, 172, 144, 172, 160, 140, 160, 140, 180 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 32, 140, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 140 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 124, -32 )
+polygon = PoolVector2Array( 32, 140, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 140 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 200, -28 )
+polygon = PoolVector2Array( 24, 136, 24, 132, 36, 132, 36, 136 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 320, 16 )
+polygon = PoolVector2Array( 32, 136, 32, 136, 28, 136, 28, 140, 24, 140, 24, 132, 36, 132, 36, 136 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 264, 104 )
+polygon = PoolVector2Array( 32, 136, 24, 136, 24, 132, 36, 132, 36, 136 )
+
+[node name="Chest" parent="." instance=ExtResource( 3 )]
+position = Vector2( 334, 72 )
+
+[node name="Gate" parent="." instance=ExtResource( 5 )]
+position = Vector2( 334, 116 )
+
+[node name="Portal" parent="." instance=ExtResource( 4 )]
+position = Vector2( 192, 74 )
+target_scene = "res://scenes/Map_4.tscn"
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 288, 340 )
+
+[node name="Ghost" parent="." instance=ExtResource( 6 )]
+position = Vector2( 124.488, 283.752 )
+
+[node name="Ghost2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 140.237, 101.693 )
+
+[node name="Ghost3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 291.428, 106.733 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+autoplay = true

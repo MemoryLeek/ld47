@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/objects.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Chest.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 20, 64, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 72, 20, 12 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12, 4 )
+
+[node name="Chest" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite_Open" type="Sprite" parent="."]
+visible = false
+position = Vector2( -12, -20 )
+texture = SubResource( 3 )
+centered = false
+offset = Vector2( 2, 0 )
+
+[node name="Sprite_Closed" type="Sprite" parent="."]
+position = Vector2( -12, -12 )
+texture = SubResource( 4 )
+centered = false
+offset = Vector2( 2, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
+shape = SubResource( 2 )
