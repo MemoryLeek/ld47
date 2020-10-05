@@ -22,6 +22,7 @@ func swordShapeSetState():
 func _ready():
 	$Camera2D/CanvasLayer/ColorRect.visible = true
 	$Camera2D/CanvasLayer/ProperColorRect.visible = true
+	$AnimationPlayer.play("Transition")
 
 func mix(a, b, w):
 	return a * w + b * (1 - w)
