@@ -12,6 +12,7 @@ func damage(value : float):
 	
 	self._health -= value
 	$AnimationPlayer.play("OnHit")
+	$BulletSpawner/AnimationPlayer.seek(0, true)
 	if _health <= 0:
 		get_parent().find_node("Chest").visible = true
 		queue_free()
