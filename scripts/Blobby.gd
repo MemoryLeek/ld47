@@ -13,6 +13,7 @@ func damage(amount : int):
 		$AnimationPlayer.play("Hit")
 
 func _ready():
+	add_to_group("enemies")
 	var animation_clone = $AnimationPlayer.get_animation("Attack").duplicate(true)
 	$AnimationPlayer.remove_animation("Attack")
 	$AnimationPlayer.add_animation("Attack", animation_clone)

@@ -30,8 +30,10 @@ func set_enabled(e : bool):
 	enabled = e
 	if enabled:
 		$AnimatedSprite.play("On")
+		$AudioStreamPlayer2D.play()
 	else:
 		$AnimatedSprite.play("Off")
+		$AudioStreamPlayer2D.stop()
 
 func _ready():
 	assert(player != null, "Portal could not find and store reference to player")

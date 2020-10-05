@@ -37,7 +37,6 @@ content = "Teddy"
 [node name="Portal" parent="." instance=ExtResource( 3 )]
 position = Vector2( 36, 302 )
 target_scene = "res://scenes/Map_3.tscn"
-enabled = true
 
 [node name="Gandolf" parent="." instance=ExtResource( 6 )]
 position = Vector2( 368, 164 )
