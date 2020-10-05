@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var _ui : UserInterface = get_node("/root/UI")
 var _has_interacted = false
 
+var _boss_scene = preload("res://scenes/Boy_Evil.tscn")
+
 func interact():
 	if not _has_interacted:
 		if _ui.has_item("Teddy"):
@@ -53,4 +55,8 @@ func _enable_portal():
 	get_tree().current_scene.find_node("Portal").set_enabled(true)
 
 func _enrage():
-	print("Boy is enraged")
+	var evil = _boss_scene.instance()
+	get_parent().call_deferred("add_child", evil)
+	evil.position = position
+	queue_free()
+
