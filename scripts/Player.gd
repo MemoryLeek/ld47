@@ -7,6 +7,7 @@ var ACTION = "Idle"
 var attacking = false
 var velocity = Vector2(0, 0)
 var damageVisualOpacity = 0
+var vulnerable = true
 export(Color) var camera_overlay_color setget set_camera_overlay_color
 
 onready var _ui : UserInterface = get_node("/root/UI")
@@ -26,10 +27,13 @@ func mix(a, b, w):
 	return a * w + b * (1 - w)
 
 func damage(value):
-	_ui.hearts -= value
-	damageVisualOpacity = value * 0.4
-	if _ui.hearts <= 0:
-		$DeathAnimationPlayer.play("Death")
+	$Timer.start()
+	if vulnerable:
+		vulnerable = false
+		_ui.hearts -= value
+		damageVisualOpacity = value * 0.4
+		if _ui.hearts <= 0:
+			$DeathAnimationPlayer.play("Death")
 	
 func set_camera_overlay_color(color : Color):
 	$Camera2D/CanvasLayer/ColorRect.color.a = 0
@@ -87,3 +91,7 @@ func _on_DeathAnimationPlayer_animation_finished(anim_name):
 	get_tree().reload_current_scene()
 	_ui.set_hearts(3)
 	get_tree().paused = false
+
+
+func _on_Timer_timeout():
+	vulnerable = true

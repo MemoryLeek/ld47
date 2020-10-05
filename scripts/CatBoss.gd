@@ -27,6 +27,7 @@ func _ready():
 	add_to_group("enemies")
 	# This is needed for the spawner nowadays for it to work for some reason
 	$BulletSpawner.active = false
+	$BulletSpawner.active = false
 	$BulletSpawner/AnimationPlayer.play("Init")
 	
 	$Sprite.material = $Sprite.material.duplicate(true)
