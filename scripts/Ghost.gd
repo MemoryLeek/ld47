@@ -4,10 +4,13 @@ var rand = RandomNumberGenerator.new()
 var player
 var active = false
 
+onready var _ui : UserInterface = get_node("/root/UI")
+
 func _ready():
 	add_to_group("enemies")
 	rand.seed = self.get_index()
 	player = get_tree().current_scene.find_node("Player")
+	$Timer.wait_time = max(1, 3 - _ui.iteration)
 
 func _process(delta):
 	if active == false:

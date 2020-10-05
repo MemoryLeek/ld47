@@ -3,7 +3,8 @@ extends KinematicBody2D
 onready var _ray : RayCast2D = $RayCast2D
 onready var _player : Player = get_tree().current_scene.find_node("Player")
 
-var _health = 2 * 15
+onready var _ui : UserInterface = get_node("/root/UI")
+onready var _health = (_ui.iteration + 2) * 15
 
 func damage(amount : int):
 	$OnTakeDamage.play()
