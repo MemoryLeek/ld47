@@ -6,6 +6,7 @@ var player
 var aggro = false
 var _health = 5 * 15
 var vulnerable = true
+export var highlight = 0.0 setget set_highlight
 
 var originalPos
 
@@ -45,6 +46,9 @@ func _on_AggroArea_body_entered(body):
 		aggro = true
 		$AnimationPlayer.play("Battle")
 
+func set_highlight(value : float):
+	if $Sprite != null:
+		$Sprite.material.set_shader_param("highlight", value)
 
 func _go_nice():
 	var nice = _normal_scene.instance()
